@@ -8,7 +8,7 @@ public class Person {
     private BigInteger p;
     private int privateKey;
     private BigInteger selfPublicKey;
-    private BigInteger finalKey;
+    public BigInteger finalKey;
 
     public Person(BigInteger p, BigInteger g) {
         this.p = p;
