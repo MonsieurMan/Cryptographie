@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class TranspositionCipher
 {
-
-    public static String shuffle(int[] key, String text)
+    //TODO update the comments
+    public static String encrypt(int[] key, String text)
     {
         char[] chain = text.toCharArray();
         int wordSize = (int) Math.ceil(text.length()/key.length);
@@ -21,7 +21,6 @@ public class TranspositionCipher
         {
             for (int j = 0; j < key.length; j++)
             {
-
                 arrays.get(j)[i] = chain[i*key.length+j];
             }
         }
@@ -37,10 +36,38 @@ public class TranspositionCipher
 
         return String.valueOf(newText);
     }
-    /*
-    public static BigInteger decode(int key[], int wordSize, BigInteger encrypted)
-    {
 
+
+    public static String decrypt(int key[], String cypherText)
+    {
+        char[] chain = cypherText.toCharArray();
+        int wordSize = (int) Math.ceil(cypherText.length()/key.length);
+        char[] newText = new char[wordSize * key.length];
+
+        //Build the array list
+        ArrayList<char[]> arrays = new ArrayList<>();
+        for (int ignored : key)
+        {
+            arrays.add(new char[wordSize]);
+        }
+
+        int index = 0;
+        for (int i : key) {
+            for (int j = 0; j < wordSize; j++) {
+                arrays.get(i-1)[j] = chain[index];
+                index++;
+            }
+        }
+
+        index = 0;
+        for (int i = 0; i < wordSize; i++) {
+            for (int j = 0; j < key.length; j++) {
+                newText[index] = arrays.get(j)[i];
+                index++;
+            }
+        }
+
+        return String.valueOf(newText);
     }
-    */
+
 }

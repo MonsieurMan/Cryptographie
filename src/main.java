@@ -1,6 +1,5 @@
 import java.math.BigInteger;
 
-
 public class main{
     public static void main(String[] args) {
 
@@ -18,9 +17,24 @@ public class main{
 
         //Je suis pas encore sur que ça fonctionne avec le BigInteger
         System.out.println(Bob.finalKey);
-        System.out.println(TranspositionCipher.shuffle(new int[]{2, 1, 4, 3}, Bob.finalKey.toString()));
+        String encryptedKey = TranspositionCipher.encrypt(new int[]{2, 1, 4, 3}, Bob.finalKey.toString());
+        System.out.println(encryptedKey);
 
-        //Version avec une chaine de caractère
-        //System.out.println(TranspositionCipher.shuffle(new int[]{2, 1, 3}, "Bonjourxx"));
+        String decryptedKey = TranspositionCipher.decrypt(new int[]{2, 1, 4, 3}, encryptedKey);
+        System.out.println(decryptedKey);
+
+        BigInteger testKey = new BigInteger(decryptedKey);
+
+        System.out.println(testKey.equals(Bob.finalKey));
+
+        /*Version avec une chaine de caractère
+        String chain = "Bonjourxx";
+
+        chain = TranspositionCipher.encrypt(new int[]{2, 1, 3}, chain);
+        System.out.println(chain);
+
+        chain = TranspositionCipher.decrypt(new int[]{2, 1, 3}, chain);
+        System.out.println(chain);
+        */
     }
 }
