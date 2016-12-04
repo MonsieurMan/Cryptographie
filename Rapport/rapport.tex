@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage[top=1cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{1,0,0}
+
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+	numbers=left,
+	frame=leftline,
+	xleftmargin=42pt
+}
+
+\title{%
+    \begin{minipage}\linewidth
+        \centering \bfseries
+        Rapport du projet de cryptographie
+        \vskip3pt
+        \large Modélisation
+    \end{minipage}
+}
+
+
+
+\author{Mathis Deloge, Antoine Petot, Ange Picard}
+\date{}
+
+
+\begin{document}
+
+% définition des style de puces
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$-$}
+\renewcommand{\labelitemiv}{$\triangleright$}
+
+
+\maketitle
+
+\section{Descriptif du sujet}
+\section{Journal de bord}
+\section{Modèle mathématique}
+\section{Conclusion}
+\newpage
+\renewcommand{\contentsname}{Sommaire}
+\tableofcontents
+\end{document}
