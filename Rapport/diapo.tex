@@ -80,15 +80,43 @@
 \subsubsection{Diffie-Hellamn}
 \begin{frame}
 	\frametitle{Diffie-Hellman}
-	
+	\begin{block}{Principe}
+	\begin{itemize}
+	 \item Alice et Bob choisissent un groupe fini G d'ordre n et un générateur g de ce groupe publiquement
+	 \item Alice choisi au hasard a tel que 1 < a < n puis communique à Bob ga
+	 \item Bob choisi au hasard b tel que 1 < b < n puis communique à Alice gb
+	 \item Alice élève à la puissance a le nombre communiqué par Bob
+	 \item Bob élève à la puissance b le nombre communiqué par Alice
+	 \item Alice et Bob connaissent le nombre g(ab) impssible à déterminer par Eve
+	\end{itemize}
+	\end{block}
+\end{frame}
+\begin{frame}
+	\frametitle{Diffie-Hellman}
+	\begin{center}
+	 	\includegraphics[width=5cm]{Images/Diffie-Hellman.png}
+	\end{center}
 \end{frame}
 
 \subsubsection{Chiffrement par transposition}
 \begin{frame}
 	\frametitle{Chiffrement par transposition}
-	
+	\begin{block}{Principe}
+	\begin{itemize}
+	 \item Avec le chiffrement par transposition, il est nécessaire que Alice et Bob connaissent une clé de chiffrement.
+	 \item  Lors du chiffrement par transposition, on découpe le texte codé en bloc de la taille de la clé de chiffrement pour ensuite permuter l'ordre des caractère à l'intérieur de ces blocs en suivant le clé de chiffrement.
+	 \item Pour déchiffrer un message, il suffit de remettre les caractères à leur place au sein de chaque bloc de texte en s'aidant de la clé de chiffrement
+	\end{itemize}
+	\end{block}	
 \end{frame}
 
+\begin{frame}
+	\frametitle{Chiffrement par transposition}
+	 On peut représenter la chiffrement d'un message par transposition à l'aide d'un tableau :
+	 \begin{center}
+	 	\includegraphics[width=9cm]{Images/tableau.jpg}
+	\end{center}
+\end{frame}
 
 \subsection{Prolongements possibles}
 \begin{frame}
