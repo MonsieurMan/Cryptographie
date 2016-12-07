@@ -1,0 +1,141 @@
+\documentclass[usepdftitlre=false, debug]{beamer}
+
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[ansinew]{inputenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usetheme{Rochester}
+\usecolortheme{default}
+
+\title{Cryptographie}
+\author{Mathis Deloge, Antoine Petot, Ange Picard}
+%\institute{IUT Informatique Dijon / Auxerre}
+\date{Dimanche 4 décembre 2016}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{1,0,0}
+
+\lstset{ %
+  backgroundcolor=\color{gray!30!white},   % choose the background color
+  basicstyle=\small\ttfamily,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+	numbers=left,
+	frame=leftline,
+	xleftmargin=42pt
+}
+
+\setbeamertemplate{navigation symbols}{%
+\insertbackfindforwardnavigationsymbol
+}
+
+\setbeamercolor{background canvas}{bg=yellow!10!white}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+  \frametitle{Sommaire}
+  \tableofcontents[currentsection, hideothersubsections]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\section{Présentation du sujet}
+\subsection{Le sujet}
+\begin{frame}
+	\frametitle{Le sujet}
+	\pause
+	\begin{block}{Descriptif}
+	Implémentation de deux programmes permettant le codage et le décodage d'information numériques suivant les deux principes suivant :
+	\begin{itemize}
+	 \item 
+	\end{itemize}
+
+	\end{block}
+\end{frame}
+
+\subsection{Prolongements possibles}
+\begin{frame}
+	\frametitle{Prolongements possibles}
+	\begin{block}{Les différents prolongements du sujet}
+	 \begin{itemize}
+	  \item Conseillez Alice et Bob sur le choix du protocole de partage de clé.
+	  \item Si Alice et Bob ne s'étaient pas connus à l'université, auraient-ils pu utiliser la méthode proposée par Bob ? Et celle proposée par Alice ?
+	  \item Attaque de l'homme du milieu avec Diffie-Hellman.
+	  \item Algorithme ``baby step giant step'' et résolution du problème du logarithme discret dans Diffie-Hellman.
+	  \item Protocole d'attaque pour le chiffrement par transposition.
+	 \end{itemize}
+	\end{block}
+
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+\section{Présentation des programme}
+\subsection{Diffie-Hellman}
+\begin{frame}
+	\frametitle{Diffie-Hellman} 
+	\pause
+
+\end{frame}
+\subsection{Chiffrement par transposition}
+\begin{frame}
+	\frametitle{Chiffrement par transposition} 
+	\pause
+
+\end{frame}
+
+
+\section{Résultats}
+\begin{frame}
+	\frametitle{Résultats}
+	\pause
+
+\end{frame}
+
+
+\section{Conclusion}
+\begin{frame}
+ \frametitle{Conclusion}
+ \pause
+
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Sommaire}
+  \tableofcontents
+\end{frame}
+
+\end{document}

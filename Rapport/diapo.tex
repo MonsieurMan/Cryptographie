@@ -1,0 +1,233 @@
+\documentclass[usepdftitlre=false, debug]{beamer}
+
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[ansinew]{inputenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usetheme{Rochester}
+\usecolortheme{default}
+
+\title{Cryptographie}
+\author{Mathis Deloge, Antoine Petot, Ange Picard}
+%\institute{IUT Informatique Dijon / Auxerre}
+\date{Dimanche 4 décembre 2016}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{1,0,0}
+
+\lstset{ %
+  backgroundcolor=\color{gray!30!white},   % choose the background color
+  basicstyle=\small\ttfamily,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+	numbers=left,
+	frame=leftline,
+	xleftmargin=42pt
+}
+
+\setbeamertemplate{navigation symbols}{%
+\insertbackfindforwardnavigationsymbol
+}
+
+\setbeamercolor{background canvas}{bg=yellow!10!white}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+  \frametitle{Sommaire}
+  \tableofcontents[currentsection, hideothersubsections]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\section{Présentation du sujet}
+\subsection{Le sujet}
+\begin{frame}
+	\frametitle{Le sujet}
+	\pause
+	\begin{block}{Descriptif}
+	Implémentation de deux programmes permettant le codage et le décodage d'information numériques suivant les deux principes suivant :
+	\begin{itemize}
+	 \item Echange de clé de Diffie-Hellman
+	 \item Chiffrement par transposition
+	\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsubsection{Diffie-Hellamn}
+\begin{frame}
+	\frametitle{Diffie-Hellman}
+	\begin{block}{Principe}
+	\begin{itemize}
+	 \item Alice et Bob choisissent un groupe fini G d'ordre n et un générateur g de ce groupe publiquement
+	 \item Alice choisi au hasard a tel que 1 < a < n puis communique à Bob ga
+	 \item Bob choisi au hasard b tel que 1 < b < n puis communique à Alice gb
+	 \item Alice élève à la puissance a le nombre communiqué par Bob
+	 \item Bob élève à la puissance b le nombre communiqué par Alice
+	 \item Alice et Bob connaissent le nombre g(ab) impssible à déterminer par Eve
+	\end{itemize}
+	\end{block}
+\end{frame}
+\begin{frame}
+	\frametitle{Diffie-Hellman}
+	\begin{center}
+	 	\includegraphics[width=5cm]{Images/Diffie-Hellman.png}
+	\end{center}
+\end{frame}
+
+\subsubsection{Chiffrement par transposition}
+\begin{frame}
+	\frametitle{Chiffrement par transposition}
+	\begin{block}{Principe}
+	\begin{itemize}
+	 \item Avec le chiffrement par transposition, il est nécessaire que Alice et Bob connaissent une clé de chiffrement.
+	 \item  Lors du chiffrement par transposition, on découpe le texte codé en bloc de la taille de la clé de chiffrement pour ensuite permuter l'ordre des caractère à l'intérieur de ces blocs en suivant le clé de chiffrement.
+	 \item Pour déchiffrer un message, il suffit de remettre les caractères à leur place au sein de chaque bloc de texte en s'aidant de la clé de chiffrement
+	\end{itemize}
+	\end{block}	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Chiffrement par transposition}
+	 On peut représenter la chiffrement d'un message par transposition à l'aide d'un tableau :
+	 \begin{center}
+	 	\includegraphics[width=9cm]{Images/tableau.jpg}
+	\end{center}
+\end{frame}
+
+\subsection{Prolongements possibles}
+\begin{frame}
+	\frametitle{Prolongements possibles}
+	\begin{block}{Les différents prolongements du sujet}
+	 \begin{itemize}
+	  \item Conseillez Alice et Bob sur le choix du protocole de partage de clé.
+	  \item Si Alice et Bob ne s'étaient pas connus à l'université, auraient-ils pu utiliser la méthode proposée par Bob ? Et celle proposée par Alice ?
+	  \item Attaque de l'homme du milieu avec Diffie-Hellman.
+	  \item Algorithme ``baby step giant step'' et résolution du problème du logarithme discret dans Diffie-Hellman.
+	  \item Protocole d'attaque pour le chiffrement par transposition.
+	 \end{itemize}
+	\end{block}
+
+\end{frame}
+
+
+
+\section{Présentation des programme}
+\subsection{Diffie-Hellman}
+\begin{frame}
+	\frametitle{Diffie-Hellman} 
+	\pause
+
+\end{frame}
+\subsection{Chiffrement par transposition}
+\begin{frame}
+	\frametitle{Chiffrement par transposition} 
+	\pause
+
+\end{frame}
+
+\section{Prolongements}
+\subsection{Choix du protocole}
+\begin{frame}
+	\frametitle{Choix du protocole}
+	\begin{block}{Quel protocole de partage de clé choisir ?}
+	 \begin{itemize}
+	  \item Diffie-Hellman est un protocole d'échange de clé tout à fait adapté dans notre cas.
+	  \item Chiffrement par transposition est un protocole de chiffrement de message à partir d'une clé. Plus adapté à l'échange de message cryptés
+	 \end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{Utilisation des protocoles}
+\begin{frame}
+	\frametitle{Utilisation des protocoles}
+	\begin{block}{Diffie-Hellman}
+		Diffie-Hellman à l'avantage de ne demander aucun prérequis pour être mis en place.
+		Il est utilisé pour échanger des clés de cryptage.
+	\end{block}
+	\begin{block}{Chiffrement par transposition}
+		Besoin d'échanger une clé secrète pour permettre le cryptage et le décryptage des messages envoyés.
+	\end{block}
+
+\end{frame}
+
+\subsection{Attaque de l'homme du milieu}
+\begin{frame}
+	\frametitle{Attaque de l'homme du milieu}
+	\begin{block}{Principe et fonctionnement}
+	 
+	\end{block}
+\end{frame}
+
+\subsection{Logarithme discret}
+\begin{frame}
+	\frametitle{Logarithme discret}
+	\begin{block}{Problème et lien avec Diffie-Hellman}
+	 
+	\end{block}
+\end{frame}
+
+\subsection{Baby step giant step}
+\begin{frame}
+	\frametitle{Baby step giant step}
+	\begin{block}{Utilisation de l'algorithme}
+	 
+	\end{block}
+\end{frame}
+
+\subsection{Attaque du chiffrement par transposition}
+\begin{frame}
+	\frametitle{Attaque du chiffrement par transposition}
+	\begin{block}{Proposition de protocole}
+	 
+	\end{block}
+\end{frame}
+
+
+
+\section{Résultats}
+\begin{frame}
+	\frametitle{Résultats}
+	\pause
+
+\end{frame}
+
+
+\section{Conclusion}
+\begin{frame}
+ \frametitle{Conclusion}
+ \pause
+
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Sommaire}
+  \tableofcontents
+\end{frame}
+
+\end{document}

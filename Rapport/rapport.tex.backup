@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage[top=1cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{pgf}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usetikzlibrary{arrows,automata}
+
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{1,0,0}
+
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+	numbers=left,
+	frame=leftline,
+	xleftmargin=42pt
+}
+
+\title{%
+    \begin{minipage}\linewidth
+        \centering \bfseries
+        Rapport du projet de cryptographie
+        \vskip3pt
+        \large Modélisation
+    \end{minipage}
+}
+
+
+
+\author{Mathis Deloge, Antoine Petot, Ange Picard}
+\date{}
+
+
+\begin{document}
+
+% définition des style de puces
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$-$}
+\renewcommand{\labelitemiv}{$\triangleright$}
+
+
+\maketitle
+
+\section{Descriptif du sujet}
+Nous étudierons ici deux algorithmes bien connus en cryptographie, l’échange de clé de Diffie-Hellman et le chiffrement par transposition. Pour illustrer nos propos, nous ferons appel à Alice et Bob, deux personnages voulant s’échanger une clé de cryptage afin de s’échanger des messages sécurisés sans que personne ne puisse les intercepter. Nous les conseillerons tout d’abord sur le choix du protocole leur permettant de partager une clé de chiffrement puis nous argumenterons l’utilisation de chacun des protocoles, les modèles mathématiques sur lesquels ils se basent, ainsi que leurs failles.
+
+Différents prolongements nous permettrons d’étudier plus précisément ces protocoles de cryptographie, notamment le problème du logarithme discret ainsi que l’algorithme ``baby step giant step'' permettant de s’approcher de la résolution de ce problème.
+
+\subsection{Diffie-Hellman}
+Diffie-Hellman est un protocole d'échange de clé créé par Whitfield Diffie et Martin Hellman après leur découverte du principe de la cryptographie à clé publique.
+Il permet notamment à deux personnes (ici, Alice et Bob) de s'échanger une clé de chiffrement (un nombre entier)  en choisissant publiquement un groupe fini G 
+et un générateur g de ce groupe sans qu'un possible espion (Eve) ne puisse déterminer cette clé.
+
+Le principe de ce protocole est assez simple :
+\begin{itemize}
+ \item Alice et Bob choisissent un nombre premier p et un nombre entier a tel que $1\leq a \leq p-1$.
+ \item Alice choisit secrètement un nombre entier $x_1$ et Bob fait de même avec $x_2$.
+ \item Alice calcule alors $y^1 = a^{(x_1)}$ (mod p) et Bob fait de même avec $y^2 = a^{(x_2)}$ (mod p).
+ \item Alice et Bob s'échangent publiquement les valeurs de $y_1$ et $y_2$.
+ \item Alice calcule $y_2^{x_1} = (a^{x_2})^{x_1} = a^{x_1 x_2}$ (mod p) et obtient $K$, la clé secrète.
+ \item Bob calcule $y_1^{x_2} = (a^{x_1})^{x_2} = a^{x_1 x_2}$ (mod p) et obtient la même clé $K$ que Alice.
+\end{itemize}
+
+\begin{figure}[!h]
+  \center
+  \includegraphics[width=6.4cm]{Images/Diffie-Hellman.png}
+  \caption{Représentation Diffie-Hellman}
+\end{figure}
+
+\vspace{0.5cm}
+D'après le problème du logarithme discret, Eve ne peut pas déterminer $K$ en ayant connaissance de $p$, $a$, $y_1$ et $y_2$.
+Ainsi, Alice et Bob peuvent s'échanger en toute sécurité une clé de chiffrement $K$ mise à part s'ils sont victimes d'une attaque dite de ``l'homme du milieu'' par Eve.
+
+\subsection{Chiffrement par transposition}
+Le chiffrement par transposition est un protocole d'échange de messages cryptés basée sur une méthode simple : permuter l'ordre des lettres du message suivant certaines règles.
+
+Dans notre cas, nous allons ainsi créer une anagramme du message initial en respectant ces conditions en s'aidant d'un tableau :
+\begin{itemize}
+ \item Pour commencer, nous allons créer un tableau de la largeur de la clé de chiffrement
+ \item Nous écrirons ensuite caractère par caractère et ligne après ligne le message à coder
+ \item Il suffit alors d'organiser les colonnes suivant l'ordre croissant des caractères de la clé de chiffrement
+ \item Pour écrire le message chiffré, nous allons alors lire le tableau colonne par colonne en créant des mots de tailles similaires
+ \item Afin de déchiffrer le message, il suffit de reprendre ces étapes à l'envers
+\end{itemize}
+
+\vspace{0.5cm}
+
+\begin{figure}[!h]
+  \center
+  \includegraphics[width=15cm]{Images/tableau.jpg}
+  \caption{Exemple de transposition}
+\end{figure}
+
+\vspace{0.5cm}
+Ce genre de chiffrement est très rudimentaire et peut facilement être craqué à l'aide d'études statistiques d'apparition de lettres dans le message codé pour définir la langue.
+Par la suite, on pourra déterminer la longueur de la clé et ainsi découper chaque mot pour essayer de trouver des anagrammes de chaque mot en utilisant un dictionnaire dans la langue déterminée auparavant.
+\newpage
+\section{Journal de bord}
+\subsection{Séance 1}
+Lors de la première séance, notre choix s'est immédiatement tourné vers le sujet de cryptographie qui nous intéressait tout particulièrement.
+Après avoir pris connaissance du sujet, nous avons immédiatement entamer les recherches concernant l'échange de clé de Diffie-Hellman afin de comprendre son principe et commencer un début d'implémentation simple en java.
+
+\subsection{Séance 2}
+Durant cette séance, nous avons principalement continué nos recherches toujours axées sur l'échange de clé de Diffie-Hellman mais également sur le chiffrement par transposition.
+Un début de compte rendu à commencé à être rédigé ainsi que le projet java final avec lequel les programmes seront implémenté a été créé.
+
+\subsection{Séance 3}
+
+
+\subsection{Séance 4}
+Lors de cette dernière séance, nous avons principalement rechercher des information à propos du problème du logarithme discret, son principe et son lien avec la méthode de Diffie-Hellman.
+
+
+\subsection{Hors séance}
+Si nous avons principalement fait des recherches sur les sujets de cryptographie durant les quatres séances de modélisation, la plupart du code à été fait en dehors des séances en s'appuyant sur nos travaux de séance.
+
+
+\newpage
+\section{Modèle mathématique}
+\subsection{Le problème du logarithme discret}
+Le principale modèle mathématique auquel nous avons été confronté pour ce sujet est le problème 
+
+\newpage
+\section{Conclusion}
+\subsection{Les difficultés rencontrées}
+\subsection{Les outils acquis}
+
+\newpage
+\renewcommand{\contentsname}{Sommaire}
+\tableofcontents
+\end{document}
