@@ -1,40 +1,20 @@
+import java.io.BufferedReader;
 import java.math.BigInteger;
+import java.security.SecureRandom;
 
 public class main{
     public static void main(String[] args) {
-
         PerfectGenerator generator = new PerfectGenerator();
-        BigInteger p = generator.getP();
         BigInteger g = generator.getG();
+        BigInteger p = generator.getP();
 
-        Person Bob = new Person(p, g);
-        Person Alice = new Person(p, g);
+        Person Alice = new Person(p,g, "Alice");
+        Person Bob = new Person("Bob");
 
-        Bob.givePublicKey(Alice.getSelfPublicKey());
-        Alice.givePublicKey(Bob.getSelfPublicKey());
+        Network network = new Network(Alice,Bob);
 
-        //Pour la transposition sur le biginteger c'est plus facile de le faire sous forme de string.
+        Alice.givePublicKey(network.initiateConversation(p,g, Alice.getSelfPublicKey()));
 
-        //Je suis pas encore sur que ça fonctionne avec le BigInteger
-        System.out.println(Bob.finalKey);
-        String encryptedKey = TranspositionCipher.encrypt(new int[]{2, 1, 4, 3}, Bob.finalKey.toString());
-        System.out.println(encryptedKey);
-
-        String decryptedKey = TranspositionCipher.decrypt(new int[]{2, 1, 4, 3}, encryptedKey);
-        System.out.println(decryptedKey);
-
-        BigInteger testKey = new BigInteger(decryptedKey);
-
-        System.out.println(testKey.equals(Bob.finalKey));
-
-        /*Version avec une chaine de caractère
-        String chain = "Bonjourxx";
-
-        chain = TranspositionCipher.encrypt(new int[]{2, 1, 3}, chain);
-        System.out.println(chain);
-
-        chain = TranspositionCipher.decrypt(new int[]{2, 1, 3}, chain);
-        System.out.println(chain);
-        */
+        network.send(Alice.encrypt("Whatever niggaz it works !"));
     }
 }
