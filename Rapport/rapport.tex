@@ -118,11 +118,14 @@ Par la suite, on pourra déterminer la longueur de la clé et ainsi découper chaqu
 Lors de la première séance, notre choix s'est immédiatement tourné vers le sujet de cryptographie qui nous intéressait tout particulièrement.
 Après avoir pris connaissance du sujet, nous avons immédiatement entamer les recherches concernant l'échange de clé de Diffie-Hellman afin de comprendre son principe et commencer un début d'implémentation simple en java.
 
+Nous avons pu poser quelques questions relatives au sujet afin de bien le comprendre et orienter nos travaux dans ce sens.
+
 \subsection{Séance 2}
 Durant cette séance, nous avons principalement continué nos recherches toujours axées sur l'échange de clé de Diffie-Hellman mais également sur le chiffrement par transposition.
 Un début de compte rendu à commencé à être rédigé ainsi que le projet java final avec lequel les programmes seront implémenté a été créé.
 
 \subsection{Séance 3}
+Pendant cette séance, nous nous sommes penchés sur le problème de l'attaque de l'homme du milieu. Après quelques recherches, nous avons pu commencer son implémentation basique et ainsi répondre au prolongement n°3.
 
 
 \subsection{Séance 4}
@@ -130,7 +133,13 @@ Lors de cette dernière séance, nous avons principalement rechercher des informat
 
 
 \subsection{Hors séance}
-Si nous avons principalement fait des recherches sur les sujets de cryptographie durant les quatres séances de modélisation, la plupart du code à été fait en dehors des séances en s'appuyant sur nos travaux de séance.
+Si nous avons principalement fait des recherches sur les sujets de cryptographie durant les quatres séances de modélisation, la plupart du code à été fait en dehors des séances en s'appuyant sur nos travaux déjà réalisés..
+
+Ce sujet a la particularité par rapport au sujet de la première phase de modélisation que nous avions choisi d'être beaucoup moins exigent en terme d'implémentation.
+En effet, étant donné que les algorithmes de cryptographie existent déjà, le travail que nous avons s'est résumé à les comprendre et traduire ces algorithmes en java.
+
+\newpage
+\section{Implémentation}
 
 
 \newpage
@@ -158,10 +167,17 @@ Bien que cette méthode permet de réduire à environ $2\sqrt{n}$ multiplications c
 Dans la pratique, l'utilisation de l'algorithme baby step giant step reste limité puisqu'il convient de trier le tableau des pas de géant et demande un espace mémoire permettant de charger un tableau de taille $\sqrt{n}$ environ.
 Autant dire que cela le rend inutilisable assez rapidement. C'est ici que nous pourrons proposer l'utilisation de l'algorithme de Rho de Pollard qui permet la résolution du problème du logarithme discret avec $\sqrt{n}$ multiplications et sans espace mémoire en utilisant le principe du paradoxe des anniversaires.
 
+
 \newpage
 \section{Conclusion}
 \subsection{Les difficultés rencontrées}
+Tout au long de ce sujet, nous nous sommes rendus compte assez rapidement que dans le domaine de la cryptographie, la plus grande difficultés réside notamment dans le respect des différents modèles mathématiques lors de l'implémentation.
+En effet, tout manquement à quelques règles que ce soit peut engendrer des failles de sécurité et ne pas assurer la transmission de messages privés correctement.
+
+Nous avons ainsi du ``traduire'' correctement chacun des algortihme utilisés afin de respecter les modèles mathématiques sur lesquels ils sont basés et grâce auxquels ils permettent le sécurité des données.
+
 \subsection{Les outils acquis}
+
 
 \newpage
 \renewcommand{\contentsname}{Sommaire}
