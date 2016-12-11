@@ -116,30 +116,61 @@ Par la suite, on pourra déterminer la longueur de la clé et ainsi découper chaqu
 \section{Journal de bord}
 \subsection{Séance 1}
 Lors de la première séance, notre choix s'est immédiatement tourné vers le sujet de cryptographie qui nous intéressait tout particulièrement.
-Après avoir pris connaissance du sujet, nous avons immédiatement entamer les recherches concernant l'échange de clé de Diffie-Hellman afin de comprendre son principe et commencer un début d'implémentation simple en java.
+Après avoir pris connaissance du sujet, nous avons immédiatement entamé les recherches concernant l'échange de clé de Diffie-Hellman afin de comprendre son principe et commencer un début d'implémentation simple en java.
 
 Nous avons pu poser quelques questions relatives au sujet afin de bien le comprendre et orienter nos travaux dans ce sens.
 
 \subsection{Séance 2}
 Durant cette séance, nous avons principalement continué nos recherches toujours axées sur l'échange de clé de Diffie-Hellman mais également sur le chiffrement par transposition.
-Un début de compte rendu à commencé à être rédigé ainsi que le projet java final avec lequel les programmes seront implémenté a été créé.
+Un début de compte-rendu à commencé à être rédigé ainsi que le projet java final avec lequel les programmes seront implémentés a été créé.
 
 \subsection{Séance 3}
 Pendant cette séance, nous nous sommes penchés sur le problème de l'attaque de l'homme du milieu. Après quelques recherches, nous avons pu commencer son implémentation basique et ainsi répondre au prolongement n°3.
 
 
 \subsection{Séance 4}
-Lors de cette dernière séance, nous avons principalement rechercher des information à propos du problème du logarithme discret, son principe et son lien avec la méthode de Diffie-Hellman.
+Lors de cette dernière séance, nous avons principalement recherché des informations à propos du problème du logarithme discret, son principe et son lien avec la méthode de Diffie-Hellman.
 
 
 \subsection{Hors séance}
-Si nous avons principalement fait des recherches sur les sujets de cryptographie durant les quatres séances de modélisation, la plupart du code à été fait en dehors des séances en s'appuyant sur nos travaux déjà réalisés..
+Si nous avons principalement fait des recherches sur les sujets de cryptographie durant les quatre séances de modélisation, la plupart du code à été fait en dehors des séances en s'appuyant sur nos travaux déjà réalisés..
 
 Ce sujet a la particularité par rapport au sujet de la première phase de modélisation que nous avions choisi d'être beaucoup moins exigent en terme d'implémentation.
 En effet, étant donné que les algorithmes de cryptographie existent déjà, le travail que nous avons s'est résumé à les comprendre et traduire ces algorithmes en java.
 
 \newpage
 \section{Implémentation}
+Lors de l'implémentation de l'algorithme de Diffi-Hellman, nous avons eu différents choix à faire, notamment une base $g$ ainsi qu'un nombre premier $p$.
+
+\vspace{0.5cm}
+
+Dans notre cas, nous avons pris $g = 2$, en effet, même si celui-ci est un générateur à proprement parlé dans $p$, il permet de générer un nombre de valeurs bien assez grand pour assurer la pérénité de la clé de chiffrement.
+
+\vspace{0.5cm}
+
+Pour choisir un nombre premier $p$, étant donné la difficulté de recherche de très grands nombres premiers, nous avons donc du utiliser la méthode probablePrime de la classe BigInteger de java. Celle-ci utilise un test de primalité probabiliste renvoyant un nombre premier ou proche d'un nombre premier.
+C'est à dire un nombre dont la décomposition en facteur premier serait faible ce qui n'est pas gênant dans notre cas puisque pour présenter une réelle faille de sécurité, il faudrait le découpage en facteur premier de $p$ soit très grand.
+
+\vspace{0.5cm}
+
+\begin{figure}[!h]
+\begin{lstlisting}[language=java]
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+public class PerfectGenerator {
+    private BigInteger g;
+    private BigInteger p;
+
+    public PerfectGenerator() {
+	g = BigInteger.valueOf(2);
+	p = BigInteger.probablePrime(2048, new SecureRandom());
+    }
+}
+\end{lstlisting}
+\caption{Implémentation de PerfectGenerator}
+\end{figure}
+
 
 
 \newpage
@@ -153,7 +184,7 @@ C'est essentiellement le fait que le groupe $G$ choisi est un groupe cyclique et
 
 
 \subsection{Baby step giant step}
-Cet algorithme est une des solutions envisageable pour approcher la résolution du poblème du logarithme discret. Avec celui-ci, d'autres algorithmes tels que le Rho de Pollard qui permet de décomposer en produit des nombres premier et l'algorithme de Pohlig-Hellman qui divise le problème du logarithme discret en autres problèmes de logarithme discret plus petits jusqu'à construire une solution.
+Cet algorithme est une des solutions envisageables pour approcher la résolution du problème du logarithme discret. Avec celui-ci, d'autres algorithmes tels que le Rho de Pollard qui permet de décomposer en produit des nombres premier et l'algorithme de Pohlig-Hellman qui divise le problème du logarithme discret en autres problèmes de logarithme discret plus petits jusqu'à construire une solution.
 Le principe de l'algorithme baby step giant step est de résoudre le problème du logarithme discret en effectuant environ $2\sqrt{n}$ multiplications dans le groupe $G$.
 
 Ainsi, on pose $m = \lceil \sqrt{n} \rceil$, puis la division euclidienne de $l$ par $m$ qui donne $l=mk+r$ avec $0\leq r \leq m$ pour obtenir grâce au choix de $m$ : $0 \leq l \leq m-1$.
@@ -177,7 +208,7 @@ En effet, tout manquement à quelques règles que ce soit peut engendrer des faill
 Nous avons ainsi du ``traduire'' correctement chacun des algortihme utilisés afin de respecter les modèles mathématiques sur lesquels ils sont basés et grâce auxquels ils permettent le sécurité des données.
 
 \subsection{Les outils acquis}
-
+La crypto, c'est cho
 
 \newpage
 \renewcommand{\contentsname}{Sommaire}

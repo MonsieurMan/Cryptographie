@@ -118,11 +118,14 @@ Par la suite, on pourra déterminer la longueur de la clé et ainsi découper chaqu
 Lors de la première séance, notre choix s'est immédiatement tourné vers le sujet de cryptographie qui nous intéressait tout particulièrement.
 Après avoir pris connaissance du sujet, nous avons immédiatement entamer les recherches concernant l'échange de clé de Diffie-Hellman afin de comprendre son principe et commencer un début d'implémentation simple en java.
 
+Nous avons pu poser quelques questions relatives au sujet afin de bien le comprendre et orienter nos travaux dans ce sens.
+
 \subsection{Séance 2}
 Durant cette séance, nous avons principalement continué nos recherches toujours axées sur l'échange de clé de Diffie-Hellman mais également sur le chiffrement par transposition.
 Un début de compte rendu à commencé à être rédigé ainsi que le projet java final avec lequel les programmes seront implémenté a été créé.
 
 \subsection{Séance 3}
+Pendant cette séance, nous nous sommes penchés sur le problème de l'attaque de l'homme du milieu. Après quelques recherches, nous avons pu commencer son implémentation basique et ainsi répondre au prolongement n°3.
 
 
 \subsection{Séance 4}
@@ -130,18 +133,51 @@ Lors de cette dernière séance, nous avons principalement rechercher des informat
 
 
 \subsection{Hors séance}
-Si nous avons principalement fait des recherches sur les sujets de cryptographie durant les quatres séances de modélisation, la plupart du code à été fait en dehors des séances en s'appuyant sur nos travaux de séance.
+Si nous avons principalement fait des recherches sur les sujets de cryptographie durant les quatres séances de modélisation, la plupart du code à été fait en dehors des séances en s'appuyant sur nos travaux déjà réalisés..
 
+Ce sujet a la particularité par rapport au sujet de la première phase de modélisation que nous avions choisi d'être beaucoup moins exigent en terme d'implémentation.
+En effet, étant donné que les algorithmes de cryptographie existent déjà, le travail que nous avons s'est résumé à les comprendre et traduire ces algorithmes en java.
+
+\newpage
+\section{Implémentation}
+Lors de l'implémentation de l'algortihme de Diffi-Hellman, nous avons eu différents choix à faire, notamment le choix 
 
 \newpage
 \section{Modèle mathématique}
 \subsection{Le problème du logarithme discret}
-Le principale modèle mathématique auquel nous avons été confronté pour ce sujet est le problème 
+Le principale modèle mathématique auquel nous avons été confronté pour ce sujet est le problème du logarithme discret, base sur laquelle se construit l'échange de clé de Diffie-Hellman.
+Il s'avère que nous sommes actuellement incapable de le résoudre et c'est la raison pour laquelle il est largement utilisé en cryptographie à clé publique.
+
+Après avoir étudié son fonctionnement, son principe repose sur le fait qu'il est impossible pour le moment de déterminer un entier $l$ pour lequel $l = log_g y$ avec $g$ étant un générateur d'une groupe cyclique $G$ et $y \in G$.
+C'est essentiellement le fait que le groupe $G$ choisi est un groupe cyclique et que $log_g y$ soit modulo $n$, $n$ étant l'ordre du groupe $G$ qu'aucune solution n'a été découverte pour résoudre ce problème.
+
+
+\subsection{Baby step giant step}
+Cet algorithme est une des solutions envisageable pour approcher la résolution du poblème du logarithme discret. Avec celui-ci, d'autres algorithmes tels que le Rho de Pollard qui permet de décomposer en produit des nombres premier et l'algorithme de Pohlig-Hellman qui divise le problème du logarithme discret en autres problèmes de logarithme discret plus petits jusqu'à construire une solution.
+Le principe de l'algorithme baby step giant step est de résoudre le problème du logarithme discret en effectuant environ $2\sqrt{n}$ multiplications dans le groupe $G$.
+
+Ainsi, on pose $m = \lceil \sqrt{n} \rceil$, puis la division euclidienne de $l$ par $m$ qui donne $l=mk+r$ avec $0\leq r \leq m$ pour obtenir grâce au choix de $m$ : $0 \leq l \leq m-1$.
+
+On obtient alors l'équation $y = g^l$ que l'on peut aussi écrire $(g^m)^k =yg^{-r}$.
+
+On peut alors réaliser les pas de géants $(g^m)^k$, que l'on stocke dans un tableau puis les pas de bébé $yg^{-r}$ jusqu'à obtenir un élément égal à un élément du tableau des pas de géant, cet élément étant une solution du problème de logarithme discret.
+
+Bien que cette méthode permet de réduire à environ $2\sqrt{n}$ multiplications comparée à la recherche exaustive de solution, on peut cependant préciser que $\sqrt{n}$ reste exponentiel.
+
+Dans la pratique, l'utilisation de l'algorithme baby step giant step reste limité puisqu'il convient de trier le tableau des pas de géant et demande un espace mémoire permettant de charger un tableau de taille $\sqrt{n}$ environ.
+Autant dire que cela le rend inutilisable assez rapidement. C'est ici que nous pourrons proposer l'utilisation de l'algorithme de Rho de Pollard qui permet la résolution du problème du logarithme discret avec $\sqrt{n}$ multiplications et sans espace mémoire en utilisant le principe du paradoxe des anniversaires.
+
 
 \newpage
 \section{Conclusion}
 \subsection{Les difficultés rencontrées}
+Tout au long de ce sujet, nous nous sommes rendus compte assez rapidement que dans le domaine de la cryptographie, la plus grande difficultés réside notamment dans le respect des différents modèles mathématiques lors de l'implémentation.
+En effet, tout manquement à quelques règles que ce soit peut engendrer des failles de sécurité et ne pas assurer la transmission de messages privés correctement.
+
+Nous avons ainsi du ``traduire'' correctement chacun des algortihme utilisés afin de respecter les modèles mathématiques sur lesquels ils sont basés et grâce auxquels ils permettent le sécurité des données.
+
 \subsection{Les outils acquis}
+
 
 \newpage
 \renewcommand{\contentsname}{Sommaire}
