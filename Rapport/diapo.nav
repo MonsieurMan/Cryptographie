@@ -22,7 +22,7 @@
 \headcommand {\beamer@subsectionentry {0}{1}{2}{9}{Prolongements possibles}}\headcommand {\beamer@subsectionpages {3}{8}}
 \headcommand {\slideentry {1}{2}{1}{9/9}{Prolongements possibles}{0}}
 \headcommand {\beamer@framepages {9}{9}}
-\headcommand {\sectionentry {2}{Pr\'esentation des programme}{10}{Pr\'esentation des programme}{0}}
+\headcommand {\sectionentry {2}{Pr\'esentation du programme}{10}{Pr\'esentation du programme}{0}}
 \headcommand {\beamer@sectionpages {2}{9}}
 \headcommand {\beamer@subsectionpages {9}{9}}
 \headcommand {\slideentry {2}{0}{1}{10/10}{}{0}}
@@ -37,11 +37,11 @@
 \headcommand {\beamer@subsectionentry {0}{3}{1}{13}{Choix du protocole}}\headcommand {\beamer@subsectionpages {12}{12}}
 \headcommand {\slideentry {3}{1}{1}{13/13}{Choix du protocole}{0}}
 \headcommand {\beamer@framepages {13}{13}}
-\headcommand {\beamer@subsectionentry {0}{3}{2}{14}{Utilisation des protocoles}}\headcommand {\beamer@subsectionpages {13}{13}}
-\headcommand {\slideentry {3}{2}{1}{14/14}{Utilisation des protocoles}{0}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{14}{Pr\'erequis des protocoles}}\headcommand {\beamer@subsectionpages {13}{13}}
+\headcommand {\slideentry {3}{2}{1}{14/14}{Pr\'erequis des protocoles}{0}}
 \headcommand {\beamer@framepages {14}{14}}
-\headcommand {\beamer@subsectionentry {0}{3}{3}{15}{Attaque de l'homme du milieu}}\headcommand {\beamer@subsectionpages {14}{14}}
-\headcommand {\slideentry {3}{3}{1}{15/15}{Attaque de l'homme du milieu}{0}}
+\headcommand {\beamer@subsectionentry {0}{3}{3}{15}{Attaque MITM}}\headcommand {\beamer@subsectionpages {14}{14}}
+\headcommand {\slideentry {3}{3}{1}{15/15}{Attaque MITM}{0}}
 \headcommand {\beamer@framepages {15}{15}}
 \headcommand {\beamer@subsectionentry {0}{3}{4}{16}{Logarithme discret}}\headcommand {\beamer@subsectionpages {15}{15}}
 \headcommand {\slideentry {3}{4}{1}{16/16}{Logarithme discret}{0}}
@@ -49,27 +49,29 @@
 \headcommand {\beamer@subsectionentry {0}{3}{5}{17}{Baby step giant step}}\headcommand {\beamer@subsectionpages {16}{16}}
 \headcommand {\slideentry {3}{5}{1}{17/17}{Baby step giant step}{0}}
 \headcommand {\beamer@framepages {17}{17}}
-\headcommand {\beamer@subsectionentry {0}{3}{6}{18}{Attaque du chiffrement par transposition}}\headcommand {\beamer@subsectionpages {17}{17}}
-\headcommand {\slideentry {3}{6}{1}{18/18}{Attaque du chiffrement par transposition}{0}}
+\headcommand {\slideentry {3}{5}{2}{18/18}{Baby step giant step}{0}}
 \headcommand {\beamer@framepages {18}{18}}
-\headcommand {\sectionentry {4}{R\'esultats}{19}{R\'esultats}{0}}
-\headcommand {\beamer@sectionpages {12}{18}}
-\headcommand {\beamer@subsectionpages {18}{18}}
-\headcommand {\slideentry {4}{0}{1}{19/19}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{3}{6}{19}{Attaque du chiffrement par transposition}}\headcommand {\beamer@subsectionpages {17}{18}}
+\headcommand {\slideentry {3}{6}{1}{19/19}{Attaque du chiffrement par transposition}{0}}
 \headcommand {\beamer@framepages {19}{19}}
-\headcommand {\slideentry {4}{0}{2}{20/21}{}{0}}
-\headcommand {\beamer@framepages {20}{21}}
+\headcommand {\sectionentry {4}{R\'esultats}{20}{R\'esultats}{0}}
+\headcommand {\beamer@sectionpages {12}{19}}
+\headcommand {\beamer@subsectionpages {19}{19}}
+\headcommand {\slideentry {4}{0}{1}{20/20}{}{0}}
+\headcommand {\beamer@framepages {20}{20}}
+\headcommand {\slideentry {4}{0}{2}{21/21}{}{0}}
+\headcommand {\beamer@framepages {21}{21}}
 \headcommand {\sectionentry {5}{Conclusion}{22}{Conclusion}{0}}
-\headcommand {\beamer@sectionpages {19}{21}}
-\headcommand {\beamer@subsectionpages {19}{21}}
+\headcommand {\beamer@sectionpages {20}{21}}
+\headcommand {\beamer@subsectionpages {20}{21}}
 \headcommand {\slideentry {5}{0}{1}{22/22}{}{0}}
 \headcommand {\beamer@framepages {22}{22}}
-\headcommand {\slideentry {5}{0}{2}{23/24}{}{0}}
-\headcommand {\beamer@framepages {23}{24}}
-\headcommand {\slideentry {5}{0}{3}{25/25}{}{0}}
-\headcommand {\beamer@framepages {25}{25}}
-\headcommand {\beamer@partpages {1}{25}}
-\headcommand {\beamer@subsectionpages {22}{25}}
-\headcommand {\beamer@sectionpages {22}{25}}
-\headcommand {\beamer@documentpages {25}}
-\headcommand {\def \inserttotalframenumber {22}}
+\headcommand {\slideentry {5}{0}{2}{23/23}{}{0}}
+\headcommand {\beamer@framepages {23}{23}}
+\headcommand {\slideentry {5}{0}{3}{24/24}{}{0}}
+\headcommand {\beamer@framepages {24}{24}}
+\headcommand {\beamer@partpages {1}{24}}
+\headcommand {\beamer@subsectionpages {22}{24}}
+\headcommand {\beamer@sectionpages {22}{24}}
+\headcommand {\beamer@documentpages {24}}
+\headcommand {\def \inserttotalframenumber {23}}

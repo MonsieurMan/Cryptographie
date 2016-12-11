@@ -27,11 +27,11 @@
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{1,0,0}
+\definecolor{mymauve}{rgb}{1,0,0.4}
 
 \lstset{ %
   backgroundcolor=\color{gray!30!white},   % choose the background color
-  basicstyle=\small\ttfamily,        % size of fonts used for the code
+  basicstyle=\fontsize{7}{11}\ttfamily,        % size of fonts used for the code
   breaklines=true,                 % automatic line breaking only at whitespace
   captionpos=b,                    % sets the caption-position to bottom
   commentstyle=\color{mygreen},    % comment style
@@ -82,12 +82,12 @@
 	\frametitle{Diffie-Hellman}
 	\begin{block}{Principe}
 	\begin{itemize}
-	 \item Alice et Bob choisissent un groupe fini G d'ordre n et un générateur g de ce groupe publiquement
-	 \item Alice choisi au hasard a tel que 1 < a < n puis communique à Bob ga
-	 \item Bob choisi au hasard b tel que 1 < b < n puis communique à Alice gb
-	 \item Alice élève à la puissance a le nombre communiqué par Bob
-	 \item Bob élève à la puissance b le nombre communiqué par Alice
-	 \item Alice et Bob connaissent le nombre g(ab) impssible à déterminer par Eve
+	 \item Alice et Bob choisissent un groupe fini $G$ d'ordre $n$ et un générateur $g$ de ce groupe publiquement.
+	 \item Alice choisis au hasard $a$ tel que $1 < a < n$ puis communique à Bob ga.
+	 \item Bob choisis au hasard $b$ tel que $1 < b < n$ puis communique à Alice gb.
+	 \item Alice élève à la puissance $a$ le nombre communiqué par Bob.
+	 \item Bob élève à la puissance $b$ le nombre communiqué par Alice.
+	 \item Alice et Bob connaissent le nombre $g^{ab}$ impossible à déterminer par Eve.
 	\end{itemize}
 	\end{block}
 \end{frame}
@@ -103,16 +103,15 @@
 	\frametitle{Chiffrement par transposition}
 	\begin{block}{Principe}
 	\begin{itemize}
-	 \item Avec le chiffrement par transposition, il est nécessaire que Alice et Bob connaissent une clé de chiffrement.
-	 \item  Lors du chiffrement par transposition, on découpe le texte codé en bloc de la taille de la clé de chiffrement pour ensuite permuter l'ordre des caractère à l'intérieur de ces blocs en suivant le clé de chiffrement.
-	 \item Pour déchiffrer un message, il suffit de remettre les caractères à leur place au sein de chaque bloc de texte en s'aidant de la clé de chiffrement
+	 \item  Lors du chiffrement par transposition, on découpe le texte à crypter en bloc de la taille de la clé de chiffrement pour ensuite permuter l'ordre des caractères à l'intérieur de ces blocs en suivant la clé de chiffrement.
+	 \item Pour déchiffrer un message, il suffit de remettre les caractères à leur place au sein de chaque bloc de texte en s'aidant de la clé de chiffrement.
 	\end{itemize}
 	\end{block}	
 \end{frame}
 
 \begin{frame}
 	\frametitle{Chiffrement par transposition}
-	 On peut représenter la chiffrement d'un message par transposition à l'aide d'un tableau :
+	 On peut représenter le chiffrement d'un message par transposition à l'aide d'un tableau :
 	 \begin{center}
 	 	\includegraphics[width=9cm]{Images/tableau.jpg}
 	\end{center}
@@ -135,9 +134,29 @@
 
 
 
-\section{Présentation des programme}
-\begin{frame}
-	\frametitle{Présentation des programme}
+\section{Présentation du programme}
+\begin{frame}[fragile]
+	\frametitle{Présentation du programme}
+	
+\begin{lstlisting}[language=java]
+public class main{
+    public static void main(String[] args) {
+        PerfectGenerator generator = new PerfectGenerator();
+        BigInteger g = generator.getG();
+        BigInteger p = generator.getP();
+
+        Person Alice = new Person(p,g, "Alice");
+        Person Bob = new Person("Bob");
+
+        Network network = new Network(Alice,Bob);
+
+        Alice.givePublicKey(network.initiateConversation(p,g, Alice.getSelfPublicKey()));
+
+        network.send(Alice.encrypt("Bonjour, j'envois un message crypté !"));
+    }
+}
+\end{lstlisting}
+
 \end{frame}
 
 \section{Prolongements}
@@ -147,29 +166,34 @@
 	\begin{block}{Quel protocole de partage de clé choisir ?}
 	 \begin{itemize}
 	  \item Diffie-Hellman est un protocole d'échange de clé tout à fait adapté dans notre cas.
-	  \item Chiffrement par transposition est un protocole de chiffrement de message à partir d'une clé. Plus adapté à l'échange de message cryptés
+	  \item Chiffrement par transposition est un protocole de chiffrement de message à partir d'une clé. Plus adapté à l'échange de messages cryptés lorsque l'on possède déjà une clé.
 	 \end{itemize}
 	\end{block}
 \end{frame}
 
-\subsection{Utilisation des protocoles}
+\subsection{Prérequis des protocoles}
 \begin{frame}
-	\frametitle{Utilisation des protocoles}
+	\frametitle{Prérequis des protocoles}
 	\begin{block}{Diffie-Hellman}
 		Diffie-Hellman à l'avantage de ne demander aucun prérequis pour être mis en place.
-		Il est utilisé pour échanger des clés de cryptage.
+		Il est utilisé pour échanger des clés de cryptage en utilisant une communication publique.
+		Il appartient à la cryptographie à clé publique.
 	\end{block}
 	\begin{block}{Chiffrement par transposition}
-		Besoin d'échanger une clé secrète pour permettre le cryptage et le décryptage des messages envoyés.
+		Cet algorithme nécessite une clé secrète connue des deux personnes pour permettre le cryptage et le décryptage des messages échangés.
 	\end{block}
 
 \end{frame}
 
-\subsection{Attaque de l'homme du milieu}
+\subsection{Attaque MITM}
 \begin{frame}
-	\frametitle{Attaque de l'homme du milieu}
-	\begin{block}{Principe et fonctionnement}
-	 
+	\frametitle{Attaque MITM : Man-in-the-middle}
+	\begin{block}{Principe et fonctionnement}	 
+	 Eve va intercepter les communications entre Alice et Bob puis mettre en place un échange de clé de Diffie-Hellman avec Alice et un autre avec Bob.
+	 Ainsi, pour Alice, Eve se fera passer pour Bob et pour Bob, elle se fera passer pour Alice.
+	\end{block}
+	\begin{block}{Contrer l'homme du milieu}
+	 Utiliser des certificats, des signatures électroniques mises en place par un tiers de confiance pour s'assurer que Bob, communique avec Alice et Alice communique avec Bob.
 	\end{block}
 \end{frame}
 
@@ -177,23 +201,55 @@
 \begin{frame}
 	\frametitle{Logarithme discret}
 	\begin{block}{Problème et lien avec Diffie-Hellman}
+
+	 Le logarithme discret est très utilisé en cryptographie à clé publique.
+	 En effet, il est impossible pour le moment de déterminer un entier $l$ pour lequel $l = log_g y$ avec $g$ étant un générateur d'une groupe cyclique $G$ et $y \in G$.
 	 
+	 Comme le groupe $G$ choisi est un groupe cyclique, $log_g y$ est modulo $n$, $n$ étant l'ordre du groupe $G$, il n'est pas possible de déterminer $l = log_g y$.
+
 	\end{block}
 \end{frame}
 
 \subsection{Baby step giant step}
 \begin{frame}
 	\frametitle{Baby step giant step}
-	\begin{block}{Utilisation de l'algorithme}
-	 
+	\begin{block}{Principe}
+	 \begin{itemize}
+	  \item On a $p$ un nombre entier premier.
+	  \item On a $x = logDiscret(h) = m*q$ avec $q$ et $r$ des entiers où $0 \leq r < m$
+	  \item On a $m = \lceil \sqrt{p} \rceil$
+	  \item On calcule $g^i$ pour $i$ allant de 0 à $m-1$ et on stocke les résultats dans une table de hashage.
+	  \item On initialise $q$ avec $q = 0$
+	  \item On calcule $h(g^{-m})^q$ en incrémentant $q$ à chaque calcul.
+	  \item On arrête de calculer dès qu'on trouve un résultats égal à un résultat de la table de hashage.
+	  \item On obtient $logDiscret(h) = q*m+1$.
+	 \end{itemize}
 	\end{block}
 \end{frame}
+
+\begin{frame}
+ 	\frametitle{Baby step giant step}
+	\begin{block}{Utilisation}
+	  L'utilisation d'un tel algorithme permet de réduire à maximum de $2\sqrt{n}$ multiplication la recherche du logarithme discret dans un groupe $G$.
+	  On pourra cependant lui reprocher son usage intensif de la mémoire pour stocker la table de hashage dans le cas d'un nombre premier $p$ très grand.
+	  D'autres algorithmes tels que le Rho de Pollard permettent la résolution du logarithme discret sans une telle utilisation de mémoire.
+	\end{block}
+\end{frame}
+
 
 \subsection{Attaque du chiffrement par transposition}
 \begin{frame}
 	\frametitle{Attaque du chiffrement par transposition}
-	\begin{block}{Proposition de protocole}
-	 
+	\begin{block}{Différentes propositions}
+	  \begin{itemize}
+	   \item Faire une étude statistiques d'apparition de lettres pour déterminer la langue du document.
+	   \item Déterminer la longueur de la clé.
+	   \begin{itemize}
+	      \item Récupérer différents messages d'un même expéditeur ou pour un même destinataire pour déterminer un début ou une fin récurrente.
+	   \end{itemize}
+	   \item Découper le message en longueur de mot de la taille de la clé.
+	   \item Essayer des anagrammes en utilisant un dictionnaire de mot dans la langue déterminée auparavant.
+	  \end{itemize}
 	\end{block}
 \end{frame}
 
@@ -202,15 +258,19 @@
 \section{Résultats}
 \begin{frame}
 	\frametitle{Résultats}
-	\pause
-
+	\begin{block}{Programme}
+	  Notre programme nous permet d'échanger des messages cryptés entre Alice et Bob et utilisant le principe de transposition et implicitement l'échange de clé de Diffie-Hellman.  
+	\end{block}
+	
+	\begin{block}{Prolongements}
+	  Les 6 prolongements proposés dans le sujet ont été réalisés, nous permettant de compléter cette introduction à la cryptographie.
+	\end{block}
 \end{frame}
 
 
 \section{Conclusion}
 \begin{frame}
  \frametitle{Conclusion}
- \pause
 
 
 \end{frame}

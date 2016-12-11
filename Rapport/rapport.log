@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.9.20)  8 DEC 2016 18:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.9.20)  11 DEC 2016 20:02
 entering extended mode
 **./rapport.tex
 (rapport.tex
@@ -749,15 +749,15 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 60.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 73.
+(Font)              <7> on input line 75.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 73.
+(Font)              <5> on input line 75.
 
 <Images/Diffie-Hellman.png, id=4, 401.5pt x 602.25pt>
 File: Images/Diffie-Hellman.png Graphic file (type png)
 
 <use Images/Diffie-Hellman.png>
-Package pdftex.def Info: Images/Diffie-Hellman.png used on input line 84.
+Package pdftex.def Info: Images/Diffie-Hellman.png used on input line 86.
 (pdftex.def)             Requested size: 182.09746pt x 273.15117pt.
  [1
 
@@ -767,7 +767,7 @@ ng>]
 File: Images/tableau.jpg Graphic file (type jpg)
 
 <use Images/tableau.jpg>
-Package pdftex.def Info: Images/tableau.jpg used on input line 108.
+Package pdftex.def Info: Images/tableau.jpg used on input line 110.
 (pdftex.def)             Requested size: 426.79134pt x 234.97028pt.
  [2 <./Images/tableau.jpg>] [3]
 ("C:\Program Files\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
@@ -781,7 +781,7 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 Here is how much of TeX's memory you used:
  17018 strings out of 493334
  326584 string characters out of 3139249
- 413880 words of memory out of 3000000
+ 413883 words of memory out of 3000000
  20197 multiletter control sequences out of 15000+200000
  62505 words of font info for 61 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -799,7 +799,7 @@ iKTeX 2.9/fonts/type1/public/lm/lmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
 e1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.p
 fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb>
-Output written on rapport.pdf (7 pages, 402666 bytes).
+Output written on rapport.pdf (7 pages, 402909 bytes).
 PDF statistics:
  87 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

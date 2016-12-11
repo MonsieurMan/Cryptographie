@@ -5,13 +5,13 @@
 \beamer@subsubsectionintoc {1}{1}{1}{Diffie-Hellamn}{5}{0}{1}
 \beamer@subsubsectionintoc {1}{1}{2}{Chiffrement par transposition}{7}{0}{1}
 \beamer@subsectionintoc {1}{2}{Prolongements possibles}{9}{0}{1}
-\beamer@sectionintoc {2}{Pr\'esentation des programme}{10}{0}{2}
+\beamer@sectionintoc {2}{Pr\'esentation du programme}{10}{0}{2}
 \beamer@sectionintoc {3}{Prolongements}{12}{0}{3}
 \beamer@subsectionintoc {3}{1}{Choix du protocole}{13}{0}{3}
-\beamer@subsectionintoc {3}{2}{Utilisation des protocoles}{14}{0}{3}
-\beamer@subsectionintoc {3}{3}{Attaque de l'homme du milieu}{15}{0}{3}
+\beamer@subsectionintoc {3}{2}{Pr\'erequis des protocoles}{14}{0}{3}
+\beamer@subsectionintoc {3}{3}{Attaque MITM}{15}{0}{3}
 \beamer@subsectionintoc {3}{4}{Logarithme discret}{16}{0}{3}
 \beamer@subsectionintoc {3}{5}{Baby step giant step}{17}{0}{3}
-\beamer@subsectionintoc {3}{6}{Attaque du chiffrement par transposition}{18}{0}{3}
-\beamer@sectionintoc {4}{R\'esultats}{19}{0}{4}
+\beamer@subsectionintoc {3}{6}{Attaque du chiffrement par transposition}{19}{0}{3}
+\beamer@sectionintoc {4}{R\'esultats}{20}{0}{4}
 \beamer@sectionintoc {5}{Conclusion}{22}{0}{5}

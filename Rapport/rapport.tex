@@ -64,6 +64,8 @@ Nous étudierons ici deux algorithmes bien connus en cryptographie, l’échange de 
 
 Différents prolongements nous permettrons d’étudier plus précisément ces protocoles de cryptographie, notamment le problème du logarithme discret ainsi que l’algorithme ``baby step giant step'' permettant de s’approcher de la résolution de ce problème.
 
+
+
 \subsection{Diffie-Hellman}
 Diffie-Hellman est un protocole d'échange de clé créé par Whitfield Diffie et Martin Hellman après leur découverte du principe de la cryptographie à clé publique.
 Il permet notamment à deux personnes (ici, Alice et Bob) de s'échanger une clé de chiffrement (un nombre entier)  en choisissant publiquement un groupe fini G 
@@ -135,7 +137,7 @@ Lors de cette dernière séance, nous avons principalement recherché des informati
 \subsection{Hors séance}
 Si nous avons principalement fait des recherches sur les sujets de cryptographie durant les quatre séances de modélisation, la plupart du code à été fait en dehors des séances en s'appuyant sur nos travaux déjà réalisés..
 
-Ce sujet a la particularité par rapport au sujet de la première phase de modélisation que nous avions choisi d'être beaucoup moins exigent en terme d'implémentation.
+Ce sujet a la particularité par rapport au sujet de la première phase de modélisation que nous avions choisi d'être beaucoup moins exigeants en terme d'implémentation.
 En effet, étant donné que les algorithmes de cryptographie existent déjà, le travail que nous avons s'est résumé à les comprendre et traduire ces algorithmes en java.
 
 \newpage
@@ -144,12 +146,12 @@ Lors de l'implémentation de l'algorithme de Diffi-Hellman, nous avons eu différe
 
 \vspace{0.5cm}
 
-Dans notre cas, nous avons pris $g = 2$, en effet, même si celui-ci est un générateur à proprement parlé dans $p$, il permet de générer un nombre de valeurs bien assez grand pour assurer la pérénité de la clé de chiffrement.
+Dans notre cas, nous avons pris $g = 2$, en effet, même si celui-ci est un générateur à proprement parlé dans $p$, il permet de générer un nombre de valeurs bien assez grand pour assurer la pérennité de la clé de chiffrement.
 
 \vspace{0.5cm}
 
-Pour choisir un nombre premier $p$, étant donné la difficulté de recherche de très grands nombres premiers, nous avons donc du utiliser la méthode probablePrime de la classe BigInteger de java. Celle-ci utilise un test de primalité probabiliste renvoyant un nombre premier ou proche d'un nombre premier.
-C'est à dire un nombre dont la décomposition en facteur premier serait faible ce qui n'est pas gênant dans notre cas puisque pour présenter une réelle faille de sécurité, il faudrait le découpage en facteur premier de $p$ soit très grand.
+Pour choisir un nombre premier $p$, étant donné la difficulté de recherche de très grands nombres premiers, nous avons donc dû utiliser la méthode probablePrime de la classe BigInteger de java. Celle-ci utilise un test de primalité probabiliste renvoyant un nombre premier ou proche d'un nombre premier.
+C'est-à-dire un nombre dont la décomposition en facteur premier serait faible ce qui n'est pas gênant dans notre cas puisque pour présenter une réelle faille de sécurité, il faudrait le découpage en facteur premier de $p$ soit très grand.
 
 \vspace{0.5cm}
 
@@ -176,8 +178,8 @@ public class PerfectGenerator {
 \newpage
 \section{Modèle mathématique}
 \subsection{Le problème du logarithme discret}
-Le principale modèle mathématique auquel nous avons été confronté pour ce sujet est le problème du logarithme discret, base sur laquelle se construit l'échange de clé de Diffie-Hellman.
-Il s'avère que nous sommes actuellement incapable de le résoudre et c'est la raison pour laquelle il est largement utilisé en cryptographie à clé publique.
+Le principal modèle mathématique auquel nous avons été confrontés pour ce sujet est le problème du logarithme discret, base sur laquelle se construit l'échange de clé de Diffie-Hellman.
+Il s'avère que nous sommes actuellement incapables de le résoudre et c'est la raison pour laquelle il est largement utilisé en cryptographie à clé publique.
 
 Après avoir étudié son fonctionnement, son principe repose sur le fait qu'il est impossible pour le moment de déterminer un entier $l$ pour lequel $l = log_g y$ avec $g$ étant un générateur d'une groupe cyclique $G$ et $y \in G$.
 C'est essentiellement le fait que le groupe $G$ choisi est un groupe cyclique et que $log_g y$ soit modulo $n$, $n$ étant l'ordre du groupe $G$ qu'aucune solution n'a été découverte pour résoudre ce problème.
@@ -193,7 +195,7 @@ On obtient alors l'équation $y = g^l$ que l'on peut aussi écrire $(g^m)^k =yg^{-
 
 On peut alors réaliser les pas de géants $(g^m)^k$, que l'on stocke dans un tableau puis les pas de bébé $yg^{-r}$ jusqu'à obtenir un élément égal à un élément du tableau des pas de géant, cet élément étant une solution du problème de logarithme discret.
 
-Bien que cette méthode permet de réduire à environ $2\sqrt{n}$ multiplications comparée à la recherche exaustive de solution, on peut cependant préciser que $\sqrt{n}$ reste exponentiel.
+Bien que cette méthode permette de réduire à environ $2\sqrt{n}$ multiplications comparée à la recherche exhaustive de solution, on peut cependant préciser que $\sqrt{n}$ reste exponentiel.
 
 Dans la pratique, l'utilisation de l'algorithme baby step giant step reste limité puisqu'il convient de trier le tableau des pas de géant et demande un espace mémoire permettant de charger un tableau de taille $\sqrt{n}$ environ.
 Autant dire que cela le rend inutilisable assez rapidement. C'est ici que nous pourrons proposer l'utilisation de l'algorithme de Rho de Pollard qui permet la résolution du problème du logarithme discret avec $\sqrt{n}$ multiplications et sans espace mémoire en utilisant le principe du paradoxe des anniversaires.
@@ -202,10 +204,10 @@ Autant dire que cela le rend inutilisable assez rapidement. C'est ici que nous p
 \newpage
 \section{Conclusion}
 \subsection{Les difficultés rencontrées}
-Tout au long de ce sujet, nous nous sommes rendus compte assez rapidement que dans le domaine de la cryptographie, la plus grande difficultés réside notamment dans le respect des différents modèles mathématiques lors de l'implémentation.
+Tout au long de ce sujet, nous nous sommes rendu compte assez rapidement que dans le domaine de la cryptographie, la plus grande difficulté réside notamment dans le respect des différents modèles mathématiques lors de l'implémentation.
 En effet, tout manquement à quelques règles que ce soit peut engendrer des failles de sécurité et ne pas assurer la transmission de messages privés correctement.
 
-Nous avons ainsi du ``traduire'' correctement chacun des algortihme utilisés afin de respecter les modèles mathématiques sur lesquels ils sont basés et grâce auxquels ils permettent le sécurité des données.
+Nous avons ainsi du ``traduire'' correctement chacun des algorithme utilisés afin de respecter les modèles mathématiques sur lesquels ils sont basés et grâce auxquels ils permettent la sécurité des données.
 
 \subsection{Les outils acquis}
 La crypto, c'est cho
