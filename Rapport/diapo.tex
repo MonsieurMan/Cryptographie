@@ -67,9 +67,8 @@
 \subsection{Le sujet}
 \begin{frame}
 	\frametitle{Le sujet}
-	\pause
 	\begin{block}{Descriptif}
-	Implémentation de deux programmes permettant le codage et le décodage d'information numériques suivant les deux principes suivant :
+	Implémentation d'un programme virtualisant deux personnes, Alice et Bob voulant s'échanger des messages cryptés en réseau suivant les deux principes suivants :
 	\begin{itemize}
 	 \item Echange de clé de Diffie-Hellman
 	 \item Chiffrement par transposition
@@ -216,7 +215,7 @@ public class main{
 	\begin{block}{Principe}
 	 \begin{itemize}
 	  \item On a $p$ un nombre entier premier.
-	  \item On a $x = logDiscret(h) = m*q$ avec $q$ et $r$ des entiers où $0 \leq r < m$
+	  \item On a $x = logDiscret(h) = m*q+r$ avec $q$ et $r$ des entiers où $0 \leq r < m$
 	  \item On a $m = \lceil \sqrt{p} \rceil$
 	  \item On calcule $g^i$ pour $i$ allant de 0 à $m-1$ et on stocke les résultats dans une table de hashage.
 	  \item On initialise $q$ avec $q = 0$
@@ -258,7 +257,7 @@ public class main{
 \begin{frame}
 	\frametitle{Résultats}
 	\begin{block}{Programme}
-	  Notre programme nous permet d'échanger des messages cryptés entre Alice et Bob et utilisant le principe de transposition et implicitement l'échange de clé de Diffie-Hellman.  
+	  Le programme permet d'échanger des messages cryptés entre Alice et Bob et utilisant le principe de transposition et implicitement l'échange de clé de Diffie-Hellman.  
 	\end{block}
 	
 	\begin{block}{Prolongements}

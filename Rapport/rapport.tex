@@ -40,7 +40,7 @@
         Rapport du projet de cryptographie
         \vspace{1cm}
         \vskip3pt
-        \large Modélisation
+        \large Modélisation Mathématiques
         \vspace{1cm}
     \end{minipage}
 }
@@ -189,13 +189,28 @@ C'est essentiellement le fait que le groupe $G$ choisi est un groupe cyclique et
 
 \subsection{Baby step giant step}
 Cet algorithme est une des solutions envisageables pour approcher la résolution du problème du logarithme discret. Avec celui-ci, d'autres algorithmes tels que le Rho de Pollard qui permet de décomposer en produit des nombres premier et l'algorithme de Pohlig-Hellman qui divise le problème du logarithme discret en autres problèmes de logarithme discret plus petits jusqu'à construire une solution.
-Le principe de l'algorithme baby step giant step est de résoudre le problème du logarithme discret en effectuant environ $2\sqrt{n}$ multiplications dans le groupe $G$.
+Le principe de l'algorithme baby step giant step est de résoudre le problème du logarithme discret en effectuant au maximum $2\sqrt{n}$ multiplications dans le groupe $G$.
 
-Ainsi, on pose $m = \lceil \sqrt{n} \rceil$, puis la division euclidienne de $l$ par $m$ qui donne $l=mk+r$ avec $0\leq r \leq m$ pour obtenir grâce au choix de $m$ : $0 \leq l \leq m-1$.
+\vspace{0.5cm}
 
-On obtient alors l'équation $y = g^l$ que l'on peut aussi écrire $(g^m)^k =yg^{-r}$.
+On a $p$ est un nombre entier premier. 
 
-On peut alors réaliser les pas de géants $(g^m)^k$, que l'on stocke dans un tableau associatif avec une clé puis les pas de bébé $yg^{-r}$ jusqu'à obtenir un élément égal à un élément du tableau des pas de géant, cet élément étant une solution du problème de logarithme discret.
+On cherche alors le logarithme discret pour $h$.
+
+On pose alors $x = logDiscret(h) = m*q+r$ avec $q$ et $r$ sont des nombres entiers.
+
+On sait également que $0 \leq r < m$ et $m = \lceil \sqrt{n} \rceil$.
+
+\vspace{0.5cm}
+
+On obtient l'équation $g^x = g^{mq}g^r$ mod $p$ avec laquelle on peut caluler les pas de géants : 
+
+$g^i$ pour i allant de 0 à $m-1$ et on stocke la valeur du résultat dans un tableu associatif avec la clé i.
+
+\vspace{0.5cm}
+
+Une fois le tableau associatif des pas de géants remplis, nous pouvons initialiser $q$ à 0 et calculer les pas de bébés suivant cette équation : $h(g^{-m})^q$ en prenant attention d'incrémenter $q$ à chaque calcul.
+A chaque résultat obtenu, nous le comparons au tableau associatif des pas de géant. Dès qu'il y a égalité, on arrête les calculs et on obtients $logDiscret(h) = q*m+1$ pour les dernières valeurs de $q$ et $m$.
 
 Bien que cette méthode permette de réduire à environ $2\sqrt{n}$ multiplications comparée à la recherche exhaustive de solution, on peut cependant préciser que $\sqrt{n}$ reste exponentiel.
 
