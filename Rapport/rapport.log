@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.9)  11 DEC 2016 23:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9) (preloaded format=pdflatex 2016.10.9)  12 DEC 2016 22:59
 entering extended mode
 **./rapport.tex
 (rapport.tex
@@ -680,16 +680,21 @@ Package pdftex.def Info: Images/tableau.jpg used on input line 110.
  [2 <./Images/tableau.jpg>] [3]
 (J:\LaTex\tex\latex\listings\lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
-) [4] [5] [6] (rapport.toc)
+) <Images/MIM.JPG, id=29, 650.43pt x 359.84438pt>
+File: Images/MIM.JPG Graphic file (type jpg)
+ <use Images/MIM.JPG>
+Package pdftex.def Info: Images/MIM.JPG used on input line 186.
+(pdftex.def)             Requested size: 284.52756pt x 157.41505pt.
+ [4 <./Images/MIM.JPG>] [5] [6] [7] (rapport.toc)
 \tf@toc=\write4
 \openout4 = `rapport.toc'.
 
- [7] (rapport.aux) ) 
+ [8] (rapport.aux) ) 
 Here is how much of TeX's memory you used:
- 17018 strings out of 493334
- 321183 string characters out of 3147440
- 413861 words of memory out of 3000000
- 20197 multiletter control sequences out of 15000+200000
+ 17026 strings out of 493334
+ 321292 string characters out of 3147440
+ 415933 words of memory out of 3000000
+ 20203 multiletter control sequences out of 15000+200000
  62505 words of font info for 61 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  48i,6n,66p,622b,1259s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -699,9 +704,9 @@ ts/type1/public/lm/lmbx12.pfb><J:/LaTex/fonts/type1/public/lm/lmcsc10.pfb><J:/La
 /LaTex/fonts/type1/public/lm/lmmi7.pfb><J:/LaTex/fonts/type1/public/lm/lmr10.pfb><J:/LaTex/fonts/type1/public/lm/lmr12.p
 fb><J:/LaTex/fonts/type1/public/lm/lmr5.pfb><J:/LaTex/fonts/type1/public/lm/lmr7.pfb><J:/LaTex/fonts/type1/public/lm/lmr
 8.pfb><J:/LaTex/fonts/type1/public/lm/lmsy10.pfb><J:/LaTex/fonts/type1/public/lm/lmsy7.pfb>
-Output written on rapport.pdf (7 pages, 402766 bytes).
+Output written on rapport.pdf (8 pages, 440382 bytes).
 PDF statistics:
- 87 PDF objects out of 1000 (max. 8388607)
+ 91 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

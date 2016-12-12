@@ -142,6 +142,7 @@ En effet, étant donné que les algorithmes de cryptographie existent déjà, le tra
 
 \newpage
 \section{Implémentation}
+\subsection{Protocoles}
 Lors de l'implémentation de l'algorithme de Diffi-Hellman, nous avons eu différents choix à faire, notamment une base $g$ ainsi qu'un nombre premier $p$.
 
 \vspace{0.5cm}
@@ -175,8 +176,37 @@ public class PerfectGenerator {
 \caption{Implémentation de PerfectGenerator}
 \end{figure}
 
+\subsection{Attaque de l'homme du milieu}
+\subsubsection{Problème}
 
+L'attaque de l'homme du milieu est une attaque dans la quelle une espionne, Eve, essayes d'écouter les communications d'Alice et Bob en leur faisant croirent qu'ils sont directement en relation alors qu'en réalité, Alice communique avec Eve qui retransmet les messages à Bob et inversement pour Bob, il croit communiquer directement avec Alice alors qu'en fait il parle à Eve qui retransmet à Alice. Eve doit donc décrypté ce qu'elle reçoit, elle peut ensuite lire le message en clair avant de le renvoyer à la bonne personne en le ré-encryptant.
 
+\begin{figure}[!h]
+  \center
+  \includegraphics[width=10cm]{Images/MIM.JPG}
+  \caption{Attaque de l'homme du milieu}
+\end{figure}
+
+Il est important de préciser que la mise en place de cette technique dans un réseau est souvent facile notamment grâce au spoofing ARP (Eve devient un passerelle du réseau) ou l'ARP poisoning (Eve se fait passer pour le PC d'Alice ou bob en modifiant les informations DNS)
+
+\subsubsection{Solution}
+
+La solution la plus utilisée pour éviter cette attaque est le protocole TLS (anciennement SLL). L'idée est d'introduire une quatrième personne qui sera chargé d'authentifié les identités des personnes qui essayes de communiquer en les certifiants.
+Plus précisément, prenons le cas où Alice essaye de communiquer avec Bob :
+\begin{itemize}
+	\item Bob demande à établir un certificat avec l’autorité de certification
+	\item l’autorité de certification vérifie l'identité de Bob et met à jour ses bases de données (et celles de ses clients : Alice)
+	\item Alice demande à bob d'ouvrir une communication sécurisée
+	\item Bob envoi à Alice son certificat avec sa clé publique et sa signature
+	\item Alice essayes de déchiffrer la signature du certificat de bob en utilisant les clés publique dans sa base de clé local (que lui a transmis l’autorité de certification). Si une clé réussis à déchiffrer le certificat Alice vérifie au près de l’autorité de certification qu'il est toujours valide
+	\item Alice renvoie à Bob une clé de chiffrement symétrique qu'elle chiffre avec la clé publique que lui a envoyé Bob
+	\item Bob déchiffre cette clé avec sa clé privé et utilise la clé de chiffrement symétrique générée par Alice pour cryptée tout les communications qu'il aura avec elle.
+	\item Well Done ! La communication TLS est établie
+\end{itemize}
+
+\vspace{0.5cm}
+
+Malheureusement si Alice ne fait pas attention il peut rester une faille... En effet, lorsque Alice essaye de déchiffrer le certificat de bob il aucune clé de correspond dans sa base de certificat mais qu'elle y arrive quand même cela veut dire que Bob (ou Eve...) essaye de se certifier lui-même. La plupart des navigateurs affichent donc un message de mise en garde. On ne peut donc que conseiller à Alice, dans ce cas, de mettre fin à la tentative de connexion.
 \newpage
 \section{Modèle mathématique}
 \subsection{Le problème du logarithme discret}
