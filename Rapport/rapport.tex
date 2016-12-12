@@ -12,7 +12,6 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usetikzlibrary{arrows,automata}
-\usepackage{pst-all,pst-eucl}
 
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
@@ -37,14 +36,17 @@
 \title{%
     \begin{minipage}\linewidth
         \centering \bfseries
+        \vspace{8cm}
         Rapport du projet de cryptographie
+        \vspace{1cm}
         \vskip3pt
         \large Modélisation
+        \vspace{1cm}
     \end{minipage}
 }
-
-\author{Mathis Deloge, Antoine Petot, Ange Picard}
 \date{12 décembre 2016}
+\author{Mathis Deloge, Antoine Petot, Ange Picard}
+
 
 
 \begin{document}
@@ -58,32 +60,6 @@
 
 
 \maketitle
-
-    \begin{titlepage}
-    \begin{pspicture}(0,0)(21,29.7)
-    \rput[tl](8,25) %On place le coin sup de boite en (8,25)
-    {
-    \begin{minipage}{10cm}% A modifier éventuellement
-    \LARGE
-    Processus de \\
-    Lévy et \\
-    Bidule
-    \end{minipage}
-    }
-
-    \rput[tl](8,20){M\up{r} Person}
-
-    \rput[tl](8,15){\thedate}
-    \psset{PointName=none,PointSymbol=none}
-    \pstGeonode(18,0){A}
-    \pstGeonode(18,29.7){B}
-    \psline[linewidth=1.5ex,doubleline=true](B)(A)
-    \ncput*[npos=0.65]{étude et environnements}
-    \end{pspicture}
-    \end{titlepage}
-
-
-
 \newpage
 \section{Descriptif du sujet}
 Nous étudierons ici deux algorithmes bien connus en cryptographie, l’échange de clé de Diffie-Hellman et le chiffrement par transposition. Pour illustrer nos propos, nous ferons appel à Alice et Bob, deux personnages voulant s’échanger une clé de cryptage afin de s’échanger des messages sécurisés sans que personne ne puisse les intercepter. Nous les conseillerons tout d’abord sur le choix du protocole leur permettant de partager une clé de chiffrement puis nous argumenterons l’utilisation de chacun des protocoles, les modèles mathématiques sur lesquels ils se basent, ainsi que leurs failles.
@@ -172,9 +148,7 @@ Lors de l'implémentation de l'algorithme de Diffi-Hellman, nous avons eu différe
 
 \vspace{0.5cm}
 
-\color{red}
 Dans notre cas, nous avons pris $g = 2$, en effet, même si celui-ci est un générateur à proprement parlé dans $p$, il permet de générer un nombre de valeurs bien assez grand pour assurer la pérennité de la clé de chiffrement.
-\color{black}
 
 \vspace{0.5cm}
 
@@ -221,11 +195,8 @@ Ainsi, on pose $m = \lceil \sqrt{n} \rceil$, puis la division euclidienne de $l$
 
 On obtient alors l'équation $y = g^l$ que l'on peut aussi écrire $(g^m)^k =yg^{-r}$.
 
-\color{red}
-préciser tableau associatif
+On peut alors réaliser les pas de géants $(g^m)^k$, que l'on stocke dans un tableau associatif avec une clé puis les pas de bébé $yg^{-r}$ jusqu'à obtenir un élément égal à un élément du tableau des pas de géant, cet élément étant une solution du problème de logarithme discret.
 
-On peut alors réaliser les pas de géants $(g^m)^k$, que l'on stocke dans un tableau puis les pas de bébé $yg^{-r}$ jusqu'à obtenir un élément égal à un élément du tableau des pas de géant, cet élément étant une solution du problème de logarithme discret.
-\color{black}
 Bien que cette méthode permette de réduire à environ $2\sqrt{n}$ multiplications comparée à la recherche exhaustive de solution, on peut cependant préciser que $\sqrt{n}$ reste exponentiel.
 
 Dans la pratique, l'utilisation de l'algorithme baby step giant step reste limité puisqu'il convient de trier le tableau des pas de géant et demande un espace mémoire permettant de charger un tableau de taille $\sqrt{n}$ environ.
