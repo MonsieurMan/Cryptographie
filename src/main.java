@@ -21,7 +21,7 @@ public class main{
         String text = "";
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         while(text != "q"){
-            System.out.println("Entrez le texte à envoyé ");
+            System.out.println("Entrez le texte à envoyer :");
             text = br.readLine();
             network.send(Alice.encrypt(text));
             System.out.println();
