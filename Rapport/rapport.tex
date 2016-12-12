@@ -129,18 +129,18 @@ Durant cette séance, nous avons principalement continué nos recherches toujours 
 Un début de compte-rendu à commencé à être rédigé ainsi que le projet java final avec lequel les programmes seront implémentés a été créé.
 
 \subsection{Séance 3}
-Pendant cette séance, nous nous sommes penchés sur le problème de l'attaque de l'homme du milieu. Après quelques recherches, nous avons pu commencer son implémentation basique et ainsi répondre au prolongement n°3. En vue de la simplicité de l'attaque nous nous sommes aussi documenté sur les différentes manières de contrés celle-ci, comme SSL ou son succésseur TLS. 
+Pendant cette séance, nous nous sommes penchés sur le problème de l'attaque de l'homme du milieu. Après quelques recherches, nous avons pu commencer son implémentation basique et ainsi répondre au prolongement n°3. En vue de la simplicité de l'attaque nous nous sommes aussi documenté sur les différentes manières de contrer celle-ci, comme SSL ou son succésseur TLS et les normes utilisées en web pour le protocole HTTPS. 
 
 
 \subsection{Séance 4}
-Lors de cette dernière séance, nous avons principalement recherché des informations à propos du problème du logarithme discret, son principe et son lien avec la méthode de Diffie-Hellman. Nous avons collecté des informations sur l'algorithme babystep giantstep, mais aussi d'autres alternatives commes l'algorithme de Pollard's rho. 
+Lors de cette dernière séance, nous avons principalement recherché des informations à propos du problème du logarithme discret, son principe et son lien avec la méthode de Diffie-Hellman. Nous avons collecté des informations sur l'algorithme baby step giant step, mais aussi d'autres alternatives commes l'algorithme du rho de Pollard. 
 
 
 \subsection{Hors séance}
 Si nous avons principalement fait des recherches sur les sujets de cryptographie durant les quatre séances de modélisation, la plupart du code à été fait en dehors des séances en s'appuyant sur nos travaux déjà réalisés..
 
 Ce sujet a la particularité par rapport au sujet de la première phase de modélisation que nous avions choisi d'être beaucoup moins exigeants en terme d'implémentation.
-En effet, étant donné que les algorithmes de cryptographie existent déjà, le travail que nous avons s'est résumé à les comprendre et traduire ces algorithmes en java.
+En effet, étant donné que les algorithmes de cryptographie existent déjà, le travail que nous avons eu s'est résumé à les comprendre et traduire ces algorithmes en java.
 
 \newpage
 \section{Implémentation}
@@ -184,7 +184,7 @@ Le principal modèle mathématique auquel nous avons été confrontés pour ce sujet 
 Il s'avère que nous sommes actuellement incapables de le résoudre et c'est la raison pour laquelle il est largement utilisé en cryptographie à clé publique.
 
 Après avoir étudié son fonctionnement, son principe repose sur le fait qu'il est impossible pour le moment de déterminer un entier $l$ pour lequel $l = log_g y$ avec $g$ étant un générateur d'une groupe cyclique $G$ et $y \in G$.
-C'est essentiellement le fait que le groupe $G$ choisi est un groupe cyclique et que $log_g y$ soit modulo $n$, $n$ étant l'ordre du groupe $G$ qu'aucune solution n'a été découverte pour résoudre ce problème.
+C'est essentiellement du au fait que le groupe $G$ choisi est un groupe cyclique et que $log_g y$ soit modulo $n$, $n$ étant l'ordre du groupe $G$ qu'aucune solution ne permette pour l'instant de résoudre ce problème.
 
 
 \subsection{Baby step giant step}

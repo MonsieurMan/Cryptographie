@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.9.20)  12 DEC 2016 21:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.9.20)  12 DEC 2016 23:00
 entering extended mode
 **./rapport.tex
 (rapport.tex
@@ -781,7 +781,7 @@ File: lstlang1.sty 2015/06/04 1.6 listings language file
 Here is how much of TeX's memory you used:
  17018 strings out of 493334
  326584 string characters out of 3139249
- 413884 words of memory out of 3000000
+ 413896 words of memory out of 3000000
  20197 multiletter control sequences out of 15000+200000
  62505 words of font info for 61 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -799,7 +799,7 @@ iKTeX 2.9/fonts/type1/public/lm/lmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
 e1/public/lm/lmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr8.p
 fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:/Program Fi
 les/MiKTeX 2.9/fonts/type1/public/lm/lmsy7.pfb>
-Output written on rapport.pdf (8 pages, 407702 bytes).
+Output written on rapport.pdf (8 pages, 408610 bytes).
 PDF statistics:
  90 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
