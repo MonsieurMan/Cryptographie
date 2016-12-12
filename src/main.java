@@ -1,9 +1,12 @@
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.Scanner;
 
 public class main{
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         PerfectGenerator generator = new PerfectGenerator();
         BigInteger g = generator.getG();
         BigInteger p = generator.getP();
@@ -15,6 +18,13 @@ public class main{
 
         Alice.givePublicKey(network.initiateConversation(p,g, Alice.getSelfPublicKey()));
 
-        network.send(Alice.encrypt("Whatever niggaz it works !"));
+        String text = "";
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        while(text != "q"){
+            System.out.println("Entrez le texte à envoyer :");
+            text = br.readLine();
+            network.send(Alice.encrypt(text));
+            System.out.println();
+        }
     }
 }
