@@ -66,7 +66,7 @@ public class Person {
     public String encrypt(String text)
     {
         String res = TranspositionCipher.encrypt(finalKey, text);
-        System.out.println(nom + " crypted = " + res);
+        System.out.println("Message crypté d'" + nom + " : "+ res);
         return res;
     }
 
