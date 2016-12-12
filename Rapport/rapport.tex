@@ -12,6 +12,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usetikzlibrary{arrows,automata}
+\usepackage{pst-all,pst-eucl}
 
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
@@ -42,10 +43,8 @@
     \end{minipage}
 }
 
-
-
 \author{Mathis Deloge, Antoine Petot, Ange Picard}
-\date{}
+\date{12 décembre 2016}
 
 
 \begin{document}
@@ -57,8 +56,35 @@
 \renewcommand{\labelitemiv}{$\triangleright$}
 
 
+
 \maketitle
 
+    \begin{titlepage}
+    \begin{pspicture}(0,0)(21,29.7)
+    \rput[tl](8,25) %On place le coin sup de boite en (8,25)
+    {
+    \begin{minipage}{10cm}% A modifier éventuellement
+    \LARGE
+    Processus de \\
+    Lévy et \\
+    Bidule
+    \end{minipage}
+    }
+
+    \rput[tl](8,20){M\up{r} Person}
+
+    \rput[tl](8,15){\thedate}
+    \psset{PointName=none,PointSymbol=none}
+    \pstGeonode(18,0){A}
+    \pstGeonode(18,29.7){B}
+    \psline[linewidth=1.5ex,doubleline=true](B)(A)
+    \ncput*[npos=0.65]{étude et environnements}
+    \end{pspicture}
+    \end{titlepage}
+
+
+
+\newpage
 \section{Descriptif du sujet}
 Nous étudierons ici deux algorithmes bien connus en cryptographie, l’échange de clé de Diffie-Hellman et le chiffrement par transposition. Pour illustrer nos propos, nous ferons appel à Alice et Bob, deux personnages voulant s’échanger une clé de cryptage afin de s’échanger des messages sécurisés sans que personne ne puisse les intercepter. Nous les conseillerons tout d’abord sur le choix du protocole leur permettant de partager une clé de chiffrement puis nous argumenterons l’utilisation de chacun des protocoles, les modèles mathématiques sur lesquels ils se basent, ainsi que leurs failles.
 
