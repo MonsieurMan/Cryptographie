@@ -146,7 +146,9 @@ Lors de l'implémentation de l'algorithme de Diffi-Hellman, nous avons eu différe
 
 \vspace{0.5cm}
 
+\color{red}
 Dans notre cas, nous avons pris $g = 2$, en effet, même si celui-ci est un générateur à proprement parlé dans $p$, il permet de générer un nombre de valeurs bien assez grand pour assurer la pérennité de la clé de chiffrement.
+\color{black}
 
 \vspace{0.5cm}
 
@@ -193,8 +195,11 @@ Ainsi, on pose $m = \lceil \sqrt{n} \rceil$, puis la division euclidienne de $l$
 
 On obtient alors l'équation $y = g^l$ que l'on peut aussi écrire $(g^m)^k =yg^{-r}$.
 
-On peut alors réaliser les pas de géants $(g^m)^k$, que l'on stocke dans un tableau puis les pas de bébé $yg^{-r}$ jusqu'à obtenir un élément égal à un élément du tableau des pas de géant, cet élément étant une solution du problème de logarithme discret.
+\color{red}
+préciser tableau associatif
 
+On peut alors réaliser les pas de géants $(g^m)^k$, que l'on stocke dans un tableau puis les pas de bébé $yg^{-r}$ jusqu'à obtenir un élément égal à un élément du tableau des pas de géant, cet élément étant une solution du problème de logarithme discret.
+\color{black}
 Bien que cette méthode permette de réduire à environ $2\sqrt{n}$ multiplications comparée à la recherche exhaustive de solution, on peut cependant préciser que $\sqrt{n}$ reste exponentiel.
 
 Dans la pratique, l'utilisation de l'algorithme baby step giant step reste limité puisqu'il convient de trier le tableau des pas de géant et demande un espace mémoire permettant de charger un tableau de taille $\sqrt{n}$ environ.
