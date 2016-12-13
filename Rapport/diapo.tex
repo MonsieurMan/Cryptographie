@@ -68,7 +68,7 @@
 \begin{frame}
 	\frametitle{Le sujet}
 	\begin{block}{Descriptif}
-	Implémentation d'un programme virtualisant deux personnes, Alice et Bob voulant s'échanger des messages cryptés en réseau suivant les deux principes suivants :
+	Implémentation d'un programme virtualisant deux personnes, Alice et Bob voulant s'échanger des messages cryptés via le réseau suivant les deux principes suivants :
 	\begin{itemize}
 	 \item Echange de clé de Diffie-Hellman
 	 \item Chiffrement par transposition
@@ -82,8 +82,8 @@
 	\begin{block}{Principe}
 	\begin{itemize}
 	 \item Alice et Bob choisissent un groupe fini $G$ d'ordre $n$ et un générateur $g$ de ce groupe publiquement.
-	 \item Alice choisis au hasard $a$ tel que $1 < a < n$ puis communique à Bob ga.
-	 \item Bob choisis au hasard $b$ tel que $1 < b < n$ puis communique à Alice gb.
+	 \item Alice choisis au hasard $a$ tel que $1 < a < n$ puis communique à Bob $g^a$.
+	 \item Bob choisis au hasard $b$ tel que $1 < b < n$ puis communique à Alice $g^b$.
 	 \item Alice élève à la puissance $a$ le nombre communiqué par Bob.
 	 \item Bob élève à la puissance $b$ le nombre communiqué par Alice.
 	 \item Alice et Bob connaissent le nombre $g^{ab}$ impossible à déterminer par Eve.
@@ -102,8 +102,9 @@
 	\frametitle{Chiffrement par transposition}
 	\begin{block}{Principe}
 	\begin{itemize}
-	 \item  Lors du chiffrement par transposition, on découpe le texte à crypter en bloc de la taille de la clé de chiffrement pour ensuite permuter l'ordre des caractères à l'intérieur de ces blocs en suivant la clé de chiffrement.
+	 \item  Lors du chiffrement par transposition, on découpe le texte à crypter en bloc de la taille de la clé de chiffrement pour ensuite permuter l'ordre des caractères à l'intérieur de ces blocs en suivant l'ordre croissant de la clé de chiffrement.
 	 \item Pour déchiffrer un message, il suffit de remettre les caractères à leur place au sein de chaque bloc de texte en s'aidant de la clé de chiffrement.
+	 \item On fera attention de retirer les espaces avant le cryptage et de les remettre lors du décryptage pour ne pas donner d'indication concernant les suites de mots.
 	\end{itemize}
 	\end{block}	
 \end{frame}
@@ -174,12 +175,15 @@ public class main{
 \begin{frame}
 	\frametitle{Prérequis des protocoles}
 	\begin{block}{Diffie-Hellman}
-		Diffie-Hellman à l'avantage de ne demander aucun prérequis pour être mis en place.
-		Il est utilisé pour échanger des clés de cryptage en utilisant une communication publique.
-		Il appartient à la cryptographie à clé publique.
+		A l'avantage de ne demander aucun prérequis pour être mis en place.
+		Il est utilisé pour échanger des clés de cryptage en utilisant une communication publique et appartient au domaine de la cryptographie à clé publique.
 	\end{block}
+	
+	\pause
 	\begin{block}{Chiffrement par transposition}
-		Cet algorithme nécessite une clé secrète connue des deux personnes pour permettre le cryptage et le décryptage des messages échangés.
+		Nécessite une clé secrète connue des deux personnes pour permettre le cryptage et le décryptage des messages échangés.
+		Dans notre cas, il pourrait être utilisé par Alice et Bob si ils s'étaient connus à l'Université et avaient échangé une clé de cryptage.
+		Dans le cas où ils n'ont pas de clé en commun, ils devraient en mettre une en place.
 	\end{block}
 
 \end{frame}
@@ -191,6 +195,7 @@ public class main{
 	 Eve va intercepter les communications entre Alice et Bob puis mettre en place un échange de clé de Diffie-Hellman avec Alice et un autre avec Bob.
 	 Ainsi, pour Alice, Eve se fera passer pour Bob et pour Bob, elle se fera passer pour Alice.
 	\end{block}
+	\pause
 	\begin{block}{Contrer l'homme du milieu}
 	 Utiliser des certificats, des signatures électroniques mises en place par un tiers de confiance pour s'assurer que Bob, communique avec Alice et Alice communique avec Bob.
 	\end{block}
@@ -201,8 +206,7 @@ public class main{
 	\frametitle{Logarithme discret}
 	\begin{block}{Problème et lien avec Diffie-Hellman}
 
-	 Le logarithme discret est très utilisé en cryptographie à clé publique.
-	 En effet, il est impossible pour le moment de déterminer un entier $l$ pour lequel $l = log_g y$ avec $g$ étant un générateur d'une groupe cyclique $G$ et $y \in G$.
+	 Très utilisé en cryptographie à clé publique, il est impossible pour le moment de déterminer un entier $l$ pour lequel $l = log_g y$ avec $g$ étant un générateur d'une groupe cyclique $G$ et $y \in G$.
 	 
 	 Comme le groupe $G$ choisi est un groupe cyclique, $log_g y$ est modulo $n$, $n$ étant l'ordre du groupe $G$, il n'est pas possible de déterminer $l = log_g y$.
 
@@ -211,27 +215,32 @@ public class main{
 
 \subsection{Baby step giant step}
 \begin{frame}
-	\frametitle{Baby step giant step}
+	\frametitle{Baby step giant step} 	
 	\begin{block}{Principe}
 	 \begin{itemize}
-	  \item On a $p$ un nombre entier premier.
-	  \item On a $x = logDiscret(h) = m*q+r$ avec $q$ et $r$ des entiers où $0 \leq r < m$
-	  \item On a $m = \lceil \sqrt{p} \rceil$
+	  \item $p$ un nombre entier premier.
+	  \item $x = logD(h) = m*q+r$ avec $q$ et $r$ entiers où $0 \leq r < m$
+	  \item $m = \lceil \sqrt{p} \rceil$
+	  \vspace{0.5cm}
 	  \item On calcule $g^i$ pour $i$ allant de 0 à $m-1$ et on stocke les résultats dans une table de hashage.
 	  \item On initialise $q$ avec $q = 0$
 	  \item On calcule $h(g^{-m})^q$ en incrémentant $q$ à chaque calcul.
 	  \item On arrête de calculer dès qu'on trouve un résultats égal à un résultat de la table de hashage.
-	  \item On obtient $logDiscret(h) = q*m+1$.
+	  \item On obtient $logD(h) = q*m+1$.
 	 \end{itemize}
 	\end{block}
 \end{frame}
 
 \begin{frame}
  	\frametitle{Baby step giant step}
+
+
 	\begin{block}{Utilisation}
-	  L'utilisation d'un tel algorithme permet de réduire à maximum de $2\sqrt{n}$ multiplication la recherche du logarithme discret dans un groupe $G$.
-	  On pourra cependant lui reprocher son usage intensif de la mémoire pour stocker la table de hashage dans le cas d'un nombre premier $p$ très grand.
-	  D'autres algorithmes tels que le Rho de Pollard permettent la résolution du logarithme discret sans une telle utilisation de mémoire.
+	  \begin{itemize}
+	   \item Permet de réduire à un maximum de $2\sqrt{n}$ multiplications la recherche du logarithme discret dans un groupe $G$.
+	   \item Usage intensif de la mémoire pour stocker la table de hashage dans le cas d'un nombre premier $p$ très grand.
+	   \item D'autres algorithmes tels que le Rho de Pollard permettent la résolution du logarithme discret sans une telle utilisation de mémoire.
+	  \end{itemize}	  
 	\end{block}
 \end{frame}
 
@@ -259,7 +268,7 @@ public class main{
 	\begin{block}{Programme}
 	  Le programme permet d'échanger des messages cryptés entre Alice et Bob et utilisant le principe de transposition et implicitement l'échange de clé de Diffie-Hellman.  
 	\end{block}
-	
+	\pause
 	\begin{block}{Prolongements}
 	  Les 6 prolongements proposés dans le sujet ont été réalisés, nous permettant de compléter cette introduction à la cryptographie.
 	\end{block}
@@ -269,7 +278,14 @@ public class main{
 \section{Conclusion}
 \begin{frame}
  \frametitle{Conclusion}
-
+  \begin{block}{Pour finir..}
+    Nous avons découvert avec ce sujet les différents aspects de la cryptographie à clé publique et les mathématiques sur lesquelles ils sont basés.
+    L'implémentation des algorithmes s'est révélée complexe afin de respecter les principes mathématiques comme celui du logarithme discret.
+    
+    \vspace{0.5cm}
+    
+    Nous avons pu aborder des sujets comme la recherche de nombre entiers premier très grand, les attaques possibles du programme mis en place, mais aussi la résolution du problème du logarithme discret...
+  \end{block}
 
 \end{frame}
 

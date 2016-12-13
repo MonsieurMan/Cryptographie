@@ -116,7 +116,10 @@ Dans notre cas, nous allons ainsi créer une anagramme du message initial en resp
 \vspace{0.5cm}
 Ce genre de chiffrement est très rudimentaire et peut facilement être craqué à l'aide d'études statistiques d'apparition de lettres dans le message codé pour définir la langue.
 Par la suite, on pourra déterminer la longueur de la clé et ainsi découper chaque mot pour essayer de trouver des anagrammes de chaque mot en utilisant un dictionnaire dans la langue déterminée auparavant.
-\newpage
+
+
+%\newpage
+
 \section{Journal de bord}
 \subsection{Séance 1}
 Lors de la première séance, notre choix s'est immédiatement tourné vers le sujet de cryptographie qui nous intéressait tout particulièrement.
@@ -142,7 +145,9 @@ Si nous avons principalement fait des recherches sur les sujets de cryptographie
 Ce sujet a la particularité par rapport au sujet de la première phase de modélisation que nous avions choisi d'être beaucoup moins exigeants en terme d'implémentation.
 En effet, étant donné que les algorithmes de cryptographie existent déjà, le travail que nous avons eu s'est résumé à les comprendre et traduire ces algorithmes en java.
 
-\newpage
+
+%\newpage
+
 \section{Implémentation}
 \subsection{Protocoles}
 Lors de l'implémentation de l'algorithme de Diffi-Hellman, nous avons eu différents choix à faire, notamment une base $g$ ainsi qu'un nombre premier $p$.
@@ -179,7 +184,7 @@ public class PerfectGenerator {
 \subsection{Attaque de l'homme du milieu}
 \subsubsection{Problème}
 
-L'attaque de l'homme du milieu est une attaque dans la quelle une espionne, Eve, essayes d'écouter les communications d'Alice et Bob en leur faisant croirent qu'ils sont directement en relation alors qu'en réalité, Alice communique avec Eve qui retransmet les messages à Bob et inversement pour Bob, il croit communiquer directement avec Alice alors qu'en fait il parle à Eve qui retransmet à Alice. Eve doit donc décrypté ce qu'elle reçoit, elle peut ensuite lire le message en clair avant de le renvoyer à la bonne personne en le ré-encryptant.
+L'attaque de l'homme du milieu est une attaque dans laquelle une espionne, Eve, essaye d'écouter les communications d'Alice et Bob en leur faisant croire qu'ils sont directement en relation alors qu'en réalité, Alice communique avec Eve qui retransmet les messages à Bob et inversement pour Bob, il croit communiquer directement avec Alice alors qu'en fait, il parle à Eve qui retransmet à Alice. Eve doit donc décrypter ce qu'elle reçoit, elle peut ensuite lire le message en clair avant de le renvoyer à la bonne personne en le ré-encryptant.
 
 \begin{figure}[!h]
   \center
@@ -187,27 +192,30 @@ L'attaque de l'homme du milieu est une attaque dans la quelle une espionne, Eve,
   \caption{Attaque de l'homme du milieu}
 \end{figure}
 
-Il est important de préciser que la mise en place de cette technique dans un réseau est souvent facile notamment grâce au spoofing ARP (Eve devient un passerelle du réseau) ou l'ARP poisoning (Eve se fait passer pour le PC d'Alice ou bob en modifiant les informations DNS)
+Il est important de préciser que la mise en place de cette technique dans un réseau est souvent facile notamment grâce au spoofing ARP (Eve devient une passerelle du réseau) ou l'ARP poisoning (Eve se fait passer pour le PC d'Alice ou bob en modifiant les informations DNS).
 
 \subsubsection{Solution}
 
-La solution la plus utilisée pour éviter cette attaque est le protocole TLS (anciennement SLL). L'idée est d'introduire une quatrième personne qui sera chargé d'authentifié les identités des personnes qui essayes de communiquer en les certifiants.
+La solution la plus utilisée pour éviter cette attaque est le protocole TLS (anciennement SSL). L'idée est d'introduire une quatrième personne qui sera chargée d'authentifier les identités des personnes qui essayes de communiquer en les certifiant.
 Plus précisément, prenons le cas où Alice essaye de communiquer avec Bob :
 \begin{itemize}
 	\item Bob demande à établir un certificat avec l’autorité de certification
 	\item l’autorité de certification vérifie l'identité de Bob et met à jour ses bases de données (et celles de ses clients : Alice)
 	\item Alice demande à bob d'ouvrir une communication sécurisée
 	\item Bob envoi à Alice son certificat avec sa clé publique et sa signature
-	\item Alice essayes de déchiffrer la signature du certificat de bob en utilisant les clés publique dans sa base de clé local (que lui a transmis l’autorité de certification). Si une clé réussis à déchiffrer le certificat Alice vérifie au près de l’autorité de certification qu'il est toujours valide
+	\item Alice essaye de déchiffrer la signature du certificat de bob en utilisant les clés publiques dans sa base de clé locales (que lui a transmis l’autorité de certification). Si une clé réussis à déchiffrer le certificat Alice vérifie auprès de l’autorité de certification qu'il est toujours valide
 	\item Alice renvoie à Bob une clé de chiffrement symétrique qu'elle chiffre avec la clé publique que lui a envoyé Bob
-	\item Bob déchiffre cette clé avec sa clé privé et utilise la clé de chiffrement symétrique générée par Alice pour cryptée tout les communications qu'il aura avec elle.
+	\item Bob déchiffre cette clé avec sa clé privée et utilise la clé de chiffrement symétrique générée par Alice pour crypter toutes les communications qu'il aura avec elle.
 	\item Well Done ! La communication TLS est établie
 \end{itemize}
 
 \vspace{0.5cm}
 
-Malheureusement si Alice ne fait pas attention il peut rester une faille... En effet, lorsque Alice essaye de déchiffrer le certificat de bob il aucune clé de correspond dans sa base de certificat mais qu'elle y arrive quand même cela veut dire que Bob (ou Eve...) essaye de se certifier lui-même. La plupart des navigateurs affichent donc un message de mise en garde. On ne peut donc que conseiller à Alice, dans ce cas, de mettre fin à la tentative de connexion.
-\newpage
+Malheureusement si Alice ne fait pas attention, il peut rester une faille... En effet, lorsque Alice essaye de déchiffrer le certificat de bob si aucune clé ne correspond dans sa base de certificat mais qu'elle y arrive quand même cela veut dire que Bob (ou Eve...) essaye de se certifier lui-même. La plupart des navigateurs affichent donc un message de mise en garde. On ne peut donc que conseiller à Alice, dans ce cas, de mettre fin à la tentative de connexion.
+
+
+%\newpage
+
 \section{Modèle mathématique}
 \subsection{Le problème du logarithme discret}
 Le principal modèle mathématique auquel nous avons été confrontés pour ce sujet est le problème du logarithme discret, base sur laquelle se construit l'échange de clé de Diffie-Hellman.
@@ -248,16 +256,27 @@ Dans la pratique, l'utilisation de l'algorithme baby step giant step reste limit
 Autant dire que cela le rend inutilisable assez rapidement. C'est ici que nous pourrons proposer l'utilisation de l'algorithme de Rho de Pollard qui permet la résolution du problème du logarithme discret avec $\sqrt{n}$ multiplications et sans espace mémoire en utilisant le principe du paradoxe des anniversaires.
 
 
-\newpage
+%\newpage
+
 \section{Conclusion}
 \subsection{Les difficultés rencontrées}
 Tout au long de ce sujet, nous nous sommes rendu compte assez rapidement que dans le domaine de la cryptographie, la plus grande difficulté réside notamment dans le respect des différents modèles mathématiques lors de l'implémentation.
 En effet, tout manquement à quelques règles que ce soit peut engendrer des failles de sécurité et ne pas assurer la transmission de messages privés correctement.
 
 Nous avons ainsi du ``traduire'' correctement chacun des algorithme utilisés afin de respecter les modèles mathématiques sur lesquels ils sont basés et grâce auxquels ils permettent la sécurité des données.
+Même si la compréhension des protocoles peut paraître intuitive, on s'aperçoit très vite que les outils mathématiques sur lesquels ils sont basés peuvent être très complexes, notament pour l'algorithme de baby-step giant-step basé sur le problème du logarithme discret.
+
+Concernant le chiffrement par transposition, son implémentation à été assez longue puisque la seule documentation trouvée explique son principe de fonctionnement dans le cadre d'une utilisation ``à la main''.
 
 \subsection{Les outils acquis}
-La crypto, c'est cho
+Une vision globale plus précise du domaine de la cryptographie à clé publique, notamment concernant l'échange d'une clé de chiffrement grâce au protocole asymétrique de Diffie-Hellman.
+Nous avons découvert qu'il nous est impossible avec les moyens actuels de générer des très grands nombres entiers premiers. C'est pourquoi nous utilisons des tests probabilistes dans le but de générer des nombres entiers très probablement premiers.
+Dans l'étude du problème du logarithme discret, nous avons pu aborder l'algorithme baby-step giant-step et son utilisation.
+
+Nous avons ainsi pris conscience des difficultés mathématiques liées au domaine de la cryptographie.
+Nous avons pu aborder les différents protocoles utilisés pour sécuriser les communications sur internet (HTTPS).
+
+
 
 \newpage
 \renewcommand{\contentsname}{Sommaire}

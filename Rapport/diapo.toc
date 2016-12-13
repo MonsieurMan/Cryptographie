@@ -9,9 +9,9 @@
 \beamer@sectionintoc {3}{Prolongements}{11}{0}{3}
 \beamer@subsectionintoc {3}{1}{Choix du protocole}{12}{0}{3}
 \beamer@subsectionintoc {3}{2}{Pr\'erequis des protocoles}{13}{0}{3}
-\beamer@subsectionintoc {3}{3}{Attaque MITM}{14}{0}{3}
-\beamer@subsectionintoc {3}{4}{Logarithme discret}{15}{0}{3}
-\beamer@subsectionintoc {3}{5}{Baby step giant step}{16}{0}{3}
-\beamer@subsectionintoc {3}{6}{Attaque du chiffrement par transposition}{18}{0}{3}
-\beamer@sectionintoc {4}{R\'esultats}{19}{0}{4}
-\beamer@sectionintoc {5}{Conclusion}{21}{0}{5}
+\beamer@subsectionintoc {3}{3}{Attaque MITM}{15}{0}{3}
+\beamer@subsectionintoc {3}{4}{Logarithme discret}{17}{0}{3}
+\beamer@subsectionintoc {3}{5}{Baby step giant step}{18}{0}{3}
+\beamer@subsectionintoc {3}{6}{Attaque du chiffrement par transposition}{20}{0}{3}
+\beamer@sectionintoc {4}{R\'esultats}{21}{0}{4}
+\beamer@sectionintoc {5}{Conclusion}{24}{0}{5}
