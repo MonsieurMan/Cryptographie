@@ -36,7 +36,7 @@ public class Network
     public void send(String text)
     {
         String decrypted = EveA.decrypt(text);
-        System.out.println("Eve got : " + decrypted);
+        System.out.println("Eve a intercepté : " + decrypted);
         Bob.receive(EveB.encrypt(decrypted));
     }
 }

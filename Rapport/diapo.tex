@@ -150,30 +150,7 @@
 
 
 
-\section{Présentation du programme}
-\begin{frame}[fragile]
-	\frametitle{Présentation du programme}
-	
-\begin{lstlisting}[language=java]
-public class main{
-    public static void main(String[] args) {
-        PerfectGenerator generator = new PerfectGenerator();
-        BigInteger g = generator.getG();
-        BigInteger p = generator.getP();
 
-        Person Alice = new Person(p,g, "Alice");
-        Person Bob = new Person("Bob");
-
-        Network network = new Network(Alice,Bob);
-
-        Alice.givePublicKey(network.initiateConversation(p,g, Alice.getSelfPublicKey()));
-
-        network.send(Alice.encrypt("Bonjour, j'envois un message crypté !"));
-    }
-}
-\end{lstlisting}
-
-\end{frame}
 
 \section{Prolongements}
 \subsection{Choix du protocole}
@@ -306,6 +283,30 @@ public class main{
 	\end{block}
 \end{frame}
 
+\section{Présentation du programme}
+\begin{frame}[fragile]
+	\frametitle{Présentation du programme}
+	
+\begin{lstlisting}[language=java]
+public class main{
+    public static void main(String[] args) {
+        PerfectGenerator generator = new PerfectGenerator();
+        BigInteger g = generator.getG();
+        BigInteger p = generator.getP();
+
+        Person Alice = new Person(p,g, "Alice");
+        Person Bob = new Person("Bob");
+
+        Network network = new Network(Alice,Bob);
+
+        Alice.givePublicKey(network.initiateConversation(p,g, Alice.getSelfPublicKey()));
+
+        network.send(Alice.encrypt("Bonjour, j'envois un message crypté !"));
+    }
+}
+\end{lstlisting}
+
+\end{frame}
 
 \section{Résultats}
 \begin{frame}
