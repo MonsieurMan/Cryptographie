@@ -201,7 +201,7 @@ Plus précisément, prenons le cas où Alice essaye de communiquer avec Bob :
 \begin{itemize}
 	\item Bob demande à établir un certificat avec l’autorité de certification
 	\item l’autorité de certification vérifie l'identité de Bob et met à jour ses bases de données (et celles de ses clients : Alice)
-	\item Alice demande à bob d'ouvrir une communication sécurisée
+	\item Alice demande à Bob d'ouvrir une communication sécurisée
 	\item Bob envoi à Alice son certificat avec sa clé publique et sa signature
 	\item Alice essaye de déchiffrer la signature du certificat de bob en utilisant les clés publiques dans sa base de clé locales (que lui a transmis l’autorité de certification). Si une clé réussis à déchiffrer le certificat Alice vérifie auprès de l’autorité de certification qu'il est toujours valide
 	\item Alice renvoie à Bob une clé de chiffrement symétrique qu'elle chiffre avec la clé publique que lui a envoyé Bob

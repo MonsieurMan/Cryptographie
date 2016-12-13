@@ -20,7 +20,7 @@
 \title{Cryptographie}
 \author{Mathis Deloge, Antoine Petot, Ange Picard}
 %\institute{IUT Informatique Dijon / Auxerre}
-\date{Dimanche 4 décembre 2016}
+\date{\today}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -201,6 +201,28 @@ public class main{
 	\end{block}
 \end{frame}
 
+\subsection{TLS-SSL}
+\begin{frame}
+	\frametitle{TLS-SSL}
+	 \begin{block}{Principe}
+	  \begin{itemize}
+	    \item Bob met en place une certification avec AC
+	    \item Alice -> Bob d'ouvrir une communication sécurisée
+	    \item Bob >> Alice son certificat, sa clé publique et sa signature
+	    \item Alice essaye de déchiffrer la signature du certificat de bob en utilisant les clés publiques dans sa base de clé locales (que lui a transmis l’autorité de certification). Si une clé réussis à déchiffrer le certificat Alice vérifie auprès de l’autorité de certification qu'il est toujours valide
+	    \item Alice renvoie à Bob une clé de chiffrement symétrique qu'elle chiffre avec la clé publique que lui a envoyé Bob
+	    \item Bob déchiffre cette clé avec sa clé privée et utilise la clé de chiffrement symétrique générée par Alice pour crypter toutes les communications qu'il aura avec elle.
+	    \item Well Done ! La communication TLS est établie
+	  \end{itemize}
+	\end{block}
+	
+	\begin{block}{Exemple}
+	 
+	\end{block}
+
+\end{frame}
+
+
 \subsection{Logarithme discret}
 \begin{frame}
 	\frametitle{Logarithme discret}
@@ -215,28 +237,32 @@ public class main{
 
 \subsection{Baby step giant step}
 \begin{frame}
-	\frametitle{Baby step giant step}
+	\frametitle{Baby step giant step} 	
 	\begin{block}{Principe}
 	 \begin{itemize}
-	  \item On a $p$ un nombre entier premier.
-	  \item On a $x = logDiscret(h) = m*q+r$ avec $q$ et $r$ des entiers où $0 \leq r < m$
-	  \item On a $m = \lceil \sqrt{p} \rceil$
+	  \item $p$ un nombre entier premier.
+	  \item $x = logD(h) = m*q+r$ avec $q$ et $r$ entiers où $0 \leq r < m$
+	  \item $m = \lceil \sqrt{p} \rceil$
+	  \vspace{0.5cm}
 	  \item On calcule $g^i$ pour $i$ allant de 0 à $m-1$ et on stocke les résultats dans une table de hashage.
 	  \item On initialise $q$ avec $q = 0$
 	  \item On calcule $h(g^{-m})^q$ en incrémentant $q$ à chaque calcul.
 	  \item On arrête de calculer dès qu'on trouve un résultats égal à un résultat de la table de hashage.
-	  \item On obtient $logDiscret(h) = q*m+1$.
+	  \item On obtient $logD(h) = q*m+1$.
 	 \end{itemize}
 	\end{block}
 \end{frame}
 
 \begin{frame}
  	\frametitle{Baby step giant step}
- 	\p
+
+
 	\begin{block}{Utilisation}
-	  L'utilisation d'un tel algorithme permet de réduire à maximum de $2\sqrt{n}$ multiplication la recherche du logarithme discret dans un groupe $G$.
-	  On pourra cependant lui reprocher son usage intensif de la mémoire pour stocker la table de hashage dans le cas d'un nombre premier $p$ très grand.
-	  D'autres algorithmes tels que le Rho de Pollard permettent la résolution du logarithme discret sans une telle utilisation de mémoire.
+	  \begin{itemize}
+	   \item Permet de réduire à un maximum de $2\sqrt{n}$ multiplications la recherche du logarithme discret dans un groupe $G$.
+	   \item Usage intensif de la mémoire pour stocker la table de hashage dans le cas d'un nombre premier $p$ très grand.
+	   \item D'autres algorithmes tels que le Rho de Pollard permettent la résolution du logarithme discret sans une telle utilisation de mémoire.
+	  \end{itemize}	  
 	\end{block}
 \end{frame}
 
@@ -274,7 +300,14 @@ public class main{
 \section{Conclusion}
 \begin{frame}
  \frametitle{Conclusion}
-
+  \begin{block}{Pour finir..}
+    Nous avons découvert avec ce sujet les différents aspects de la cryptographie à clé publique et les mathématiques sur lesquelles ils sont basés.
+    L'implémentation des algorithmes s'est révélée complexe afin de respecter les principes mathématiques comme celui du logarithme discret.
+    
+    \vspace{0.5cm}
+    
+    Nous avons pu aborder des sujets comme la recherche de nombre entiers premier très grand, les attaques possibles du programme mis en place, mais aussi la résolution du problème du logarithme discret...
+  \end{block}
 
 \end{frame}
 

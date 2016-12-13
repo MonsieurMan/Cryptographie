@@ -20,7 +20,7 @@
 \title{Cryptographie}
 \author{Mathis Deloge, Antoine Petot, Ange Picard}
 %\institute{IUT Informatique Dijon / Auxerre}
-\date{Dimanche 4 décembre 2016}
+\date{\today}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -81,11 +81,17 @@
 	\frametitle{Diffie-Hellman}
 	\begin{block}{Principe}
 	\begin{itemize}
+	 \pause
 	 \item Alice et Bob choisissent un groupe fini $G$ d'ordre $n$ et un générateur $g$ de ce groupe publiquement.
+	 \pause
 	 \item Alice choisis au hasard $a$ tel que $1 < a < n$ puis communique à Bob $g^a$.
+	 \pause
 	 \item Bob choisis au hasard $b$ tel que $1 < b < n$ puis communique à Alice $g^b$.
+	 \pause
 	 \item Alice élève à la puissance $a$ le nombre communiqué par Bob.
+	 \pause
 	 \item Bob élève à la puissance $b$ le nombre communiqué par Alice.
+	 \pause
 	 \item Alice et Bob connaissent le nombre $g^{ab}$ impossible à déterminer par Eve.
 	\end{itemize}
 	\end{block}
@@ -102,8 +108,11 @@
 	\frametitle{Chiffrement par transposition}
 	\begin{block}{Principe}
 	\begin{itemize}
+	 \pause
 	 \item  Lors du chiffrement par transposition, on découpe le texte à crypter en bloc de la taille de la clé de chiffrement pour ensuite permuter l'ordre des caractères à l'intérieur de ces blocs en suivant l'ordre croissant de la clé de chiffrement.
+	 \pause
 	 \item Pour déchiffrer un message, il suffit de remettre les caractères à leur place au sein de chaque bloc de texte en s'aidant de la clé de chiffrement.
+	 \pause
 	 \item On fera attention de retirer les espaces avant le cryptage et de les remettre lors du décryptage pour ne pas donner d'indication concernant les suites de mots.
 	\end{itemize}
 	\end{block}	
@@ -122,10 +131,17 @@
 	\frametitle{Prolongements possibles}
 	\begin{block}{Les différents prolongements du sujet}
 	 \begin{itemize}
+	  \pause
 	  \item Conseillez Alice et Bob sur le choix du protocole de partage de clé.
+	  \pause
 	  \item Si Alice et Bob ne s'étaient pas connus à l'université, auraient-ils pu utiliser la méthode proposée par Bob ? Et celle proposée par Alice ?
+	  \pause
 	  \item Attaque de l'homme du milieu avec Diffie-Hellman.
+	  \pause
+	  \item Expliquez le problème du logarithme discret et son lien avec Diffie-Hellman.
+	  \pause
 	  \item Algorithme ``baby step giant step'' et résolution du problème du logarithme discret dans Diffie-Hellman.
+	  \pause
 	  \item Protocole d'attaque pour le chiffrement par transposition.
 	 \end{itemize}
 	\end{block}
@@ -201,6 +217,29 @@ public class main{
 	\end{block}
 \end{frame}
 
+\subsection{TLS-SSL}
+\begin{frame}
+	\frametitle{TLS-SSL}
+	 \begin{block}{Principe}
+	  \begin{itemize}
+	    \item Bob met en place une certification avec AC
+	    \pause
+	    \item Alice -> Bob ouvrir une communication sécurisée
+	    \pause
+	    \item Bob -> Alice son certificat, sa clé publique et sa signature
+	    \pause
+	    \item Alice vérifie que le certificat de Bob est valide
+	    \pause
+	    \item Alice -> Bob une clé de chiffrement (type Diffie-Hellman)
+	    \pause
+	    \item Bob déchiffre et l'utilise pour communiquer (Diffie-Hellman)
+	    \pause
+	    \item Well Done ! La communication TLS est établie
+	  \end{itemize}
+	\end{block}
+\end{frame}
+
+
 \subsection{Logarithme discret}
 \begin{frame}
 	\frametitle{Logarithme discret}
@@ -218,14 +257,20 @@ public class main{
 	\frametitle{Baby step giant step} 	
 	\begin{block}{Principe}
 	 \begin{itemize}
+	  \pause
 	  \item $p$ un nombre entier premier.
 	  \item $x = logD(h) = m*q+r$ avec $q$ et $r$ entiers où $0 \leq r < m$
 	  \item $m = \lceil \sqrt{p} \rceil$
+	  \pause
 	  \vspace{0.5cm}
 	  \item On calcule $g^i$ pour $i$ allant de 0 à $m-1$ et on stocke les résultats dans une table de hashage.
+	  \pause
 	  \item On initialise $q$ avec $q = 0$
+	  \pause
 	  \item On calcule $h(g^{-m})^q$ en incrémentant $q$ à chaque calcul.
+	  \pause
 	  \item On arrête de calculer dès qu'on trouve un résultats égal à un résultat de la table de hashage.
+	  \pause
 	  \item On obtient $logD(h) = q*m+1$.
 	 \end{itemize}
 	\end{block}
@@ -284,7 +329,7 @@ public class main{
     
     \vspace{0.5cm}
     
-    Nous avons pu aborder des sujets comme la recherche de nombre entiers premier très grand, les attaques possibles du programme mis en place, mais aussi la résolution du problème du logarithme discret...
+    Nous avons pu aborder des sujets comme la recherche de nombre entiers premier très grand, les attaques possibles du programme mis en place, mais aussi la résolution du problème du logarithme discret.
   \end{block}
 
 \end{frame}
